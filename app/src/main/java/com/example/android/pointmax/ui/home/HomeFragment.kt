@@ -24,16 +24,18 @@ class HomeFragment : Fragment() {
 
     }
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
+//    override fun onCreateView(
+//            inflater: LayoutInflater,
+//            container: ViewGroup?,
+//            savedInstanceState: Bundle?
+//    ): View? {
+//
+//        val binding: FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
+//        binding.setLifecycleOwner(this)
+//        binding.viewModel = ViewModelProvider(
+//            this).get(HomeViewModel::class.java)
+//        return binding.root
+//    }
 
-        val binding: FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
-        binding.setLifecycleOwner(this)
-        binding.viewModel = ViewModelProvider(
-            this).get(HomeViewModel::class.java)
-        return binding.root
-    }
+    //This is the testing branch
 }
