@@ -31,5 +31,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_wallet, R.id.navigation_recommended))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        //gggggggggggggggggggggggggggggggggggggggggggggggggggggg
     }
 }
