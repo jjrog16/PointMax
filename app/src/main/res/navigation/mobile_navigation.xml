@@ -18,7 +18,7 @@
         tools:layout="@layout/fragment_wallet" />
 
     <fragment
-        android:id="@+id/navigation_recommendations"
+        android:id="@+id/navigation_recommended"
         android:name="com.example.android.pointmax.ui.recommended.RecommendedFragment"
         android:label="@string/title_recommended"
         tools:layout="@layout/fragment_recommended" />
