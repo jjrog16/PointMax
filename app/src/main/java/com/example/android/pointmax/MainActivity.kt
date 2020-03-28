@@ -17,21 +17,21 @@ import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
-        Timber.i("${menuItem}")
-        when (menuItem.itemId) {
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        Timber.i("Before when call: ${item}")
+        when (item.itemId) {
             R.id.navigation_home-> {
-                Timber.i("${menuItem}")
+                Timber.i("Home call: ${item}")
                 replaceFragment(HomeFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_wallet -> {
-                Timber.i("${menuItem}")
+                Timber.i("Wallet call: ${item}")
                 replaceFragment(WalletFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_recommended -> {
-                Timber.i("${menuItem}")
+                Timber.i("Recommended call: ${item}")
                 replaceFragment(RecommendedFragment())
                 return@OnNavigationItemSelectedListener true
             }
@@ -57,12 +57,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        replaceFragment(HomeFragment())
 
     }
 
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment, fragment)
+            .replace(R.id.nav_host_fragment,fragment)
             .commit()
     }
 }
