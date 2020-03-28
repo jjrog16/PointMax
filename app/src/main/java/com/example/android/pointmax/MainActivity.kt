@@ -21,14 +21,17 @@ class MainActivity : AppCompatActivity() {
         Timber.i("${menuItem}")
         when (menuItem.itemId) {
             R.id.navigation_home-> {
+                Timber.i("${menuItem}")
                 replaceFragment(HomeFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_wallet -> {
+                Timber.i("${menuItem}")
                 replaceFragment(WalletFragment())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_recommended -> {
+                Timber.i("${menuItem}")
                 replaceFragment(RecommendedFragment())
                 return@OnNavigationItemSelectedListener true
             }
