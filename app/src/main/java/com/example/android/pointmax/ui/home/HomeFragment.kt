@@ -11,6 +11,19 @@ import com.example.android.pointmax.databinding.FragmentHomeBinding
 import timber.log.Timber
 
 class HomeFragment : Fragment() {
+    /**
+     * Initialize newInstance for passing parameters
+     */
+    companion object {
+        fun newInstance(): HomeFragment {
+            val fragmentHome = HomeFragment()
+            val args = Bundle()
+            fragmentHome.arguments = args
+            return fragmentHome
+        }
+
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
