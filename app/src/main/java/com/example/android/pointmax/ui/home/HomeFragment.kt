@@ -11,7 +11,6 @@ import com.example.android.pointmax.databinding.FragmentHomeBinding
 import timber.log.Timber
 
 class HomeFragment : Fragment() {
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class WalletViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "W"
     }
     val text: LiveData<String> = _text
 }
