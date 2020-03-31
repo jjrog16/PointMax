@@ -10,19 +10,18 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import timber.log.Timber
 
-
 class MainActivity : AppCompatActivity() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // Plant tree to enable Debugging with Timber
         Timber.plant(Timber.DebugTree())
 
+        // Find the bottomNavigation bar
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        // Find the fragment that will host the different fragments
         val navController = findNavController(R.id.nav_host_fragment)
 
         // Passing each menu ID as a set of Ids because each
