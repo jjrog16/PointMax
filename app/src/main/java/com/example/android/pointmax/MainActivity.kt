@@ -16,31 +16,7 @@ import timber.log.Timber
 
 
 class MainActivity : AppCompatActivity() {
-
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        Timber.i("Before when call: $item")
-        when (item.itemId) {
-            R.id.navigation_home-> {
-                Timber.i("Home call: $item")
-                val fragment = HomeFragment.newInstance()
-                replaceFragment(fragment)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_wallet -> {
-                Timber.i("Wallet call: $item")
-                replaceFragment(WalletFragment())
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_recommended -> {
-                Timber.i("Recommended call: $item")
-                replaceFragment(RecommendedFragment())
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -59,22 +35,5 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_wallet, R.id.navigation_recommended))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        // Set click listeners to respond to bottom navigation selections
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
-        // Need to create new instance of Home
-        val fragment = HomeFragment.newInstance()
-        replaceFragment(fragment)
-
-    }
-
-    private fun replaceFragment(fragment: Fragment) {
-        //TODO: Find a way to clear the starting fragment when app is launched. The left most
-        // fragment is the one staying in view and the other fragments are drawing on
-        // top of it.
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.nav_host_fragment,fragment)
-            .commit()
     }
 }
