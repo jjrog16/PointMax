@@ -11,20 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.wallet.WalletFragment">
-
-        <TextView
-            android:id="@+id/text_wallet"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:text="@{viewModel.text}"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wallet_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            tools:listitem="@layout/recyclerview_item"
+            app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
