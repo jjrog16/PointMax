@@ -8,7 +8,7 @@ class CardRepository(private val cardDao: CardDao) {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    val allWords: LiveData<List<Card>> = cardDao.getCards()
+    val allCards: LiveData<List<Card>> = cardDao.getCards()
 
     suspend fun insert(card: Card) {
         cardDao.insert(card)

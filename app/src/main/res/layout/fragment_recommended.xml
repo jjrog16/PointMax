@@ -13,7 +13,7 @@
         tools:context=".ui.recommended.RecommendedFragment">
 
         <TextView
-            android:id="@+id/text_notifications"
+            android:id="@+id/text_recommended"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

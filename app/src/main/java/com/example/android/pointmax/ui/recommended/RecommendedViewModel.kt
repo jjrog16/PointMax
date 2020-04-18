@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 class RecommendedViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Recommeded"
+        value = "Recommended"
     }
     val text: LiveData<String> = _text
 }
