@@ -8,12 +8,24 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
+        private lateinit var recyclerView: RecyclerView
+        private lateinit var viewAdapter: RecyclerView.Adapter<*>
+        private lateinit var viewManager: RecyclerView.LayoutManager
+
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // RecyclerView
+        recyclerView = findViewById(R.id.wallet_recyclerview)
+        viewAdapter = CardAdapter(this)
+        viewManager = LinearLayoutManager(this)
+
 
         // Plant tree to enable Debugging with Timber
         Timber.plant(Timber.DebugTree())
