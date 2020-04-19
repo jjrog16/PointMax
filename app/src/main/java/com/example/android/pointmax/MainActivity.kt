@@ -13,33 +13,27 @@ import androidx.recyclerview.widget.RecyclerView
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-        private lateinit var recyclerView: RecyclerView
-        private lateinit var viewAdapter: RecyclerView.Adapter<*>
-        private lateinit var viewManager: RecyclerView.LayoutManager
-
-        override fun onCreate(savedInstanceState: Bundle?) {
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // RecyclerView
-        recyclerView = findViewById(R.id.wallet_recyclerview)
-        viewAdapter = CardAdapter(this)
-        viewManager = LinearLayoutManager(this)
-
-
+        
         // Plant tree to enable Debugging with Timber
         Timber.plant(Timber.DebugTree())
-
+        
         // Find the bottomNavigation bar
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
+        
         // Find the fragment that will host the different fragments
         val navController = findNavController(R.id.nav_host_fragment)
-
+        
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_home, R.id.navigation_wallet, R.id.navigation_recommended))
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, R.id.navigation_wallet, R.id.navigation_recommended
+            )
+        )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
