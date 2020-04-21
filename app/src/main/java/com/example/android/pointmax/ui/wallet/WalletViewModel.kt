@@ -1,16 +1,17 @@
 package com.example.android.pointmax.ui.wallet
 
 import android.app.Application
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.database.CardDao
 import com.example.android.pointmax.database.CardRepository
 import com.example.android.pointmax.database.CardRoomDatabase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class WalletViewModel(
-    val database: CardDao,
-    application: Application
-) : AndroidViewModel(application) {
+class WalletViewModel(application: Application) : ViewModel() {
     private val repository: CardRepository
     // Using LiveData and caching what getAlphabetizedWords returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the
@@ -23,9 +24,16 @@ class WalletViewModel(
         repository = CardRepository(cardsDao)
         allCards = repository.allCards
     }
+    
+    /**
+     * Launching a new coroutine to insert the data in a non-blocking way
+     */
+    fun insert(card: Card) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insert(card)
+    }
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "Wallet"
-//    }
-//    val text: LiveData<String> = _text
+    private val _text = MutableLiveData<String>().apply {
+        value = "Wallet"
+    }
+    val text: LiveData<String> = _text
 }

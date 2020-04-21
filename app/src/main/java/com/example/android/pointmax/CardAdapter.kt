@@ -15,6 +15,7 @@ class CardAdapter internal constructor(
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var cards = listOf<Card>() // Cached copy of words
+    
 
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardItemView: TextView = itemView.findViewById(R.id.textView)
