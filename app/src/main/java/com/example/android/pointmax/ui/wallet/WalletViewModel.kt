@@ -24,7 +24,7 @@ class WalletViewModel(application: Application) : ViewModel() {
         repository = CardRepository(cardsDao)
         allCards = repository.allCards
     }
-    
+
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
      */

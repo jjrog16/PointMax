@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.R
+import com.example.android.pointmax.database.Card
 import com.example.android.pointmax.databinding.FragmentWalletBinding
 
 class WalletFragment : Fragment() {
@@ -25,6 +26,11 @@ class WalletFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.viewModel = ViewModelProvider(
             this).get(WalletViewModel::class.java)
+    
+        layoutManager = LinearLayoutManager(activity)
+        recyclerView.adapter = CardAdapter(binding.viewModel.allCards)
+        
         return binding.root
     }
+    
 }
