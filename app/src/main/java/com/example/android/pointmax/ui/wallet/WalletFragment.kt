@@ -15,8 +15,7 @@ import com.example.android.pointmax.database.Card
 import com.example.android.pointmax.databinding.FragmentWalletBinding
 
 class WalletFragment : Fragment() {
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var layoutManager: RecyclerView.LayoutManager
+    
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -26,10 +25,6 @@ class WalletFragment : Fragment() {
         binding.setLifecycleOwner(this)
         binding.viewModel = ViewModelProvider(
             this).get(WalletViewModel::class.java)
-    
-        layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = CardAdapter(binding.viewModel.allCards)
-        
         return binding.root
     }
     
