@@ -12,30 +12,35 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.R
 import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.databinding.FragmentWalletBinding
 
 class WalletFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewModel: WalletViewModel
+    
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentWalletBinding = FragmentWalletBinding.inflate(layoutInflater)
-        binding.setLifecycleOwner(this)
-        binding.viewModel = ViewModelProvider(
-            this).get(WalletViewModel::class.java)
+        
+        val rootView = inflater.inflate(R.layout.fragment_wallet, container, false)
+        recyclerView = rootView.findViewById(R.id.wallet_recyclerview)
+        
+        viewModel = ViewModelProvider(
+            this
+        ).get(WalletViewModel::class.java)
         
         // Specify layout for recyclerView
-        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL,false)
+        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         viewManager = linearLayoutManager
         
         // Observe the model
-        binding.viewModel.allCards.observe(viewLifecycleOwner, Observer { cards->
+        viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
             viewAdapter = CardAdapter(cards)
         })
-        return binding.root
+        return rootView
     }
     
 }
