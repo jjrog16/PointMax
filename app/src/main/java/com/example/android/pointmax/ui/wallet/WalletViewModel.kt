@@ -28,9 +28,4 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     fun insert(card: Card) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(card)
     }
-
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "Wallet"
-//    }
-//    val text: LiveData<String> = _text
 }

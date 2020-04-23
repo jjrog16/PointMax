@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.R
-import com.example.android.pointmax.database.Card
 
 class WalletFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -32,15 +31,18 @@ class WalletFragment : Fragment() {
             this
         ).get(WalletViewModel::class.java)
         
-        // Specify layout for recyclerView
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         viewManager = linearLayoutManager
         
-        // Observe the model
+        // Observe the ViewModel
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
             viewAdapter = CardAdapter(cards)
         })
         return rootView
     }
     
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //TODO: Fill this out with https://stackoverflow.com/questions/56049299/fragment-holding-a-recyclerview-not-showing-in-the-mainactivity
+    }
 }
