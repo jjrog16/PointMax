@@ -1,18 +1,15 @@
 package com.example.android.pointmax
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.database.CardRepository
-import timber.log.Timber
+
 
 class CardAdapter internal constructor(
-    private val cards: List<Card>
+    private var cards: List<Card>
 ) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,13 +25,12 @@ class CardAdapter internal constructor(
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         val current = cards[position]
         holder.cardItemView.text = current.toString()
-        Timber.i("Current card: $current")
     }
 
-//    internal fun setWords(cards: List<Card>) {
-//        this.cards = cards
-//        notifyDataSetChanged()
-//    }
+    internal fun setWords(cards: List<Card>) {
+        this.cards = cards
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount() = cards.size
 }

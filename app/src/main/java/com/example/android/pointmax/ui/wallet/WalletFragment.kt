@@ -40,9 +40,4 @@ class WalletFragment : Fragment() {
         })
         return rootView
     }
-    
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        //TODO: Fill this out with https://stackoverflow.com/questions/56049299/fragment-holding-a-recyclerview-not-showing-in-the-mainactivity
-    }
 }
