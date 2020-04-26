@@ -31,13 +31,18 @@ class WalletFragment : Fragment() {
             this
         ).get(WalletViewModel::class.java)
         
+        return rootView
+    }
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         viewManager = linearLayoutManager
-        
+    
         // Observe the ViewModel
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
             viewAdapter = CardAdapter(cards)
         })
-        return rootView
     }
 }
