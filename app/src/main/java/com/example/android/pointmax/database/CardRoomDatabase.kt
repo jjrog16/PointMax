@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
@@ -60,8 +61,10 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 // Add sample words.
                 var card = Card("Petal Credit Card")
                 cardDao.insert(card)
+                Timber.i("CardRoomDatabase: ${card.card}")
                 card = Card("Discover IT")
                 cardDao.insert(card)
+                Timber.i("CardRoomDatabase: ${card.card}")
             }
         }
     }
