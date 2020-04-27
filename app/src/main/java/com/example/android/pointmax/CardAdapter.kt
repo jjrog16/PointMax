@@ -28,7 +28,7 @@ class CardAdapter internal constructor(
         holder.cardItemView.text = current.toString()
     }
 
-    internal fun setWords(cards: List<Card>) {
+    internal fun setCards(cards: List<Card>) {
         this.cards = cards
         notifyDataSetChanged()
     }

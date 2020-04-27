@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.R
+import timber.log.Timber
 
 class WalletFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -42,7 +43,7 @@ class WalletFragment : Fragment() {
     
         // Observe the ViewModel
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
-            viewAdapter = CardAdapter(cards)
+            cards?.let { CardAdapter(cards).setCards(it) }
         })
     }
 }

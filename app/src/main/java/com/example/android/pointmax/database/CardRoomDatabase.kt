@@ -61,10 +61,8 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 // Add sample words.
                 var card = Card("Petal Credit Card")
                 cardDao.insert(card)
-                Timber.i("CardRoomDatabase: ${card.card}")
                 card = Card("Discover IT")
                 cardDao.insert(card)
-                Timber.i("CardRoomDatabase: ${card.card}")
             }
         }
     }
