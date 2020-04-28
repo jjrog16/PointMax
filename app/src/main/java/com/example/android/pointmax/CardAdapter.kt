@@ -10,10 +10,10 @@ import com.example.android.pointmax.database.Card
 import kotlinx.android.synthetic.main.recyclerview_item.view.*
 
 
-class CardAdapter : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardAdapter(private var cards: List<Card>) :
+    RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     
-    private var cards = emptyList<Card>()
-    inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class CardViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardItemView: TextView = itemView.textView
     }
 
