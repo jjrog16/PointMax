@@ -1,5 +1,6 @@
 package com.example.android.pointmax
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +10,9 @@ import com.example.android.pointmax.database.Card
 import kotlinx.android.synthetic.main.recyclerview_item.view.*
 
 
-class CardAdapter internal constructor(
-    private var cards: List<Card>
-) : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
+class CardAdapter : RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     
+    private var cards = emptyList<Card>()
     inner class CardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardItemView: TextView = itemView.textView
     }
