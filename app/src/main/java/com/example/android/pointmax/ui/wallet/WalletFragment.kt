@@ -43,7 +43,7 @@ class WalletFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         wallet_recyclerview.setBackgroundColor(Color.BLUE)
     
-        val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        val linearLayoutManager = LinearLayoutManager(context)
         viewManager = linearLayoutManager
     
         // Observe the ViewModel
