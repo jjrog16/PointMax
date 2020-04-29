@@ -19,7 +19,6 @@ import timber.log.Timber
 
 class WalletFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: WalletViewModel
     
