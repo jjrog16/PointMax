@@ -41,10 +41,11 @@ class WalletFragment : Fragment() {
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        wallet_recyclerview.setBackgroundColor(Color.BLUE)
     
         val linearLayoutManager = LinearLayoutManager(context)
         viewManager = linearLayoutManager
+        
+        // Adapter that holds the current fragment context
         val adapter = activity?.let { CardAdapter(it) }
         wallet_recyclerview.adapter = adapter
     
