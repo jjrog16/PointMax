@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.R
+import com.example.android.pointmax.database.Card
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import kotlinx.android.synthetic.main.fragment_wallet.view.*
 import timber.log.Timber
@@ -35,7 +36,6 @@ class WalletFragment : Fragment() {
             this
         ).get(WalletViewModel::class.java)
         
-    
         return rootView
     }
     
@@ -45,10 +45,12 @@ class WalletFragment : Fragment() {
     
         val linearLayoutManager = LinearLayoutManager(context)
         viewManager = linearLayoutManager
+        val adapter = activity?.let { CardAdapter(it) }
+        wallet_recyclerview.adapter = adapter
     
         // Observe the ViewModel
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
-            cards?.let { CardAdapter(cards).setCards(it) }
+            cards?.let { adapter?.setCards(it) }
         })
     }
 }

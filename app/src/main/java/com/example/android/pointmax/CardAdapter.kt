@@ -10,22 +10,23 @@ import com.example.android.pointmax.database.Card
 import kotlinx.android.synthetic.main.recyclerview_item.view.*
 
 
-class CardAdapter(private var cards: List<Card>) :
+class CardAdapter(private val context: Context) :
     RecyclerView.Adapter<CardAdapter.CardViewHolder>() {
     
+    private var cards =  emptyList<Card>()
     class CardViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
         val cardItemView: TextView = itemView.textView
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
+        val itemView = LayoutInflater.from(context)
             .inflate(R.layout.recyclerview_item, parent, false)
         return CardViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        val current = cards[position]
-        holder.cardItemView.text = current.toString()
+        val current = cards[position].card
+        holder.cardItemView.text = current
     }
 
     internal fun setCards(cards: List<Card>) {
