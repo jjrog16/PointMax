@@ -1,5 +1,6 @@
 package com.example.android.pointmax.ui.wallet
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.R
+import kotlinx.android.synthetic.main.fragment_wallet.*
+import kotlinx.android.synthetic.main.fragment_wallet.view.*
 import timber.log.Timber
 
 class WalletFragment : Fragment() {
@@ -26,17 +29,19 @@ class WalletFragment : Fragment() {
     ): View? {
         
         val rootView = inflater.inflate(R.layout.fragment_wallet, container, false)
-        recyclerView = rootView.findViewById(R.id.wallet_recyclerview)
+        recyclerView = rootView.wallet_recyclerview
         
         viewModel = ViewModelProvider(
             this
         ).get(WalletViewModel::class.java)
         
+    
         return rootView
     }
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        wallet_recyclerview.setBackgroundColor(Color.BLUE)
     
         val linearLayoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         viewManager = linearLayoutManager
