@@ -34,8 +34,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_wallet, R.id.navigation_recommended
             )
         )
+        
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        //TODO: Find which fragment is visible to hide and show FAB
+        Timber.i("Where am I?: ")
     }
     
 }
