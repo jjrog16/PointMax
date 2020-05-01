@@ -1,18 +1,21 @@
 package com.example.android.pointmax.ui.wallet
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
+import com.example.android.pointmax.MainActivity
 import com.example.android.pointmax.R
-import com.example.android.pointmax.database.Card
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import kotlinx.android.synthetic.main.fragment_wallet.view.*
 import timber.log.Timber

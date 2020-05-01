@@ -4,12 +4,15 @@ package com.example.android.pointmax
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -34,11 +37,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_wallet, R.id.navigation_recommended
             )
         )
-        
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        //TODO: Find which fragment is visible to hide and show FAB
-        Timber.i("Where am I?: ")
     }
-    
 }
