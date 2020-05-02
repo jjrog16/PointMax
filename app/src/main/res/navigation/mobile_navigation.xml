@@ -15,11 +15,26 @@
         android:id="@+id/navigation_wallet"
         android:name="com.example.android.pointmax.ui.wallet.WalletFragment"
         android:label="@string/title_wallet"
-        tools:layout="@layout/fragment_wallet" />
+        tools:layout="@layout/fragment_wallet" >
+        <action
+            android:id="@+id/action_navigation_wallet_to_addCardToWalletFragment"
+            app:destination="@id/addCardToWalletFragment"
+            app:popUpTo="@id/navigation_wallet" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_recommended"
         android:name="com.example.android.pointmax.ui.recommended.RecommendedFragment"
         android:label="@string/title_recommended"
         tools:layout="@layout/fragment_recommended" />
+    <fragment
+        android:id="@+id/addCardToWalletFragment"
+        android:name="com.example.android.pointmax.ui.AddCardToWallet.AddCardToWalletFragment"
+        android:label="fragment_add_card_to_wallet"
+        tools:layout="@layout/fragment_add_card_to_wallet" >
+        <action
+            android:id="@+id/action_addCardToWalletFragment_to_navigation_wallet"
+            app:destination="@id/navigation_wallet"
+            app:popUpTo="@id/navigation_wallet" />
+    </fragment>
 </navigation>
