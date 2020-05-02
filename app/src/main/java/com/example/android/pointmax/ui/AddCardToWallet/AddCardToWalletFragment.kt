@@ -9,10 +9,10 @@ import android.view.ViewGroup
 
 import com.example.android.pointmax.R
 
-class AddCardToWallet : Fragment() {
+class AddCardToWalletFragment : Fragment() {
     
     companion object {
-        fun newInstance() = AddCardToWallet()
+        fun newInstance() = AddCardToWalletFragment()
     }
     
     private lateinit var viewModel: AddCardToWalletViewModel
