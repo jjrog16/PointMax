@@ -6,4 +6,5 @@
     <string name="title_Add_Card_To_Wallet">Add Card</string>
     <string name="enter_card_name">Enter card name</string>
     <string name="add_card_done">Done</string>
+    <string name="empty_not_saved">Card not saved. Name empty</string>
 </resources>
