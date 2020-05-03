@@ -54,10 +54,6 @@ class WalletFragment : Fragment() {
             cards?.let { adapter?.setCards(it) }
         })
     
-        walletFAB.setOnClickListener {
-            //TODO: Navigate to the new AddCardToWalletFragment
-            val action = WalletFragmentDirections.actionNavigationWalletToAddCardToWalletFragment()
-            activity?.let { findNavController().navigate(action) }
-        }
+        
     }
 }
