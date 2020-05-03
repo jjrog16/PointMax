@@ -2,6 +2,7 @@ package com.example.android.pointmax
 
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
@@ -40,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     
+        // Navigate to AddCardToWalletFragment
         walletFAB.setOnClickListener {
-            //TODO: Navigate to the new AddCardToWalletFragment
             val action = WalletFragmentDirections.actionNavigationWalletToAddCardToWalletFragment()
             navController.navigate(action)
         }
@@ -67,7 +68,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        
     }
     
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        findNavController(R.id.nav_host_fragment).navigateUp()
+        return super.onOptionsItemSelected(item)
+    }
 }

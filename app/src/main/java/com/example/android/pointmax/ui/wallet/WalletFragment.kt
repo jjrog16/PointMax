@@ -53,7 +53,5 @@ class WalletFragment : Fragment() {
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
             cards?.let { adapter?.setCards(it) }
         })
-    
-        
     }
 }
