@@ -19,7 +19,8 @@
         <action
             android:id="@+id/action_navigation_wallet_to_addCardToWalletFragment"
             app:destination="@id/addCardToWalletFragment"
-            app:popUpTo="@id/navigation_wallet" />
+            app:popUpTo="@id/navigation_wallet"
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -35,6 +36,7 @@
         <action
             android:id="@+id/action_addCardToWalletFragment_to_navigation_wallet"
             app:destination="@id/navigation_wallet"
-            app:popUpTo="@id/navigation_wallet" />
+            app:popUpTo="@id/navigation_wallet"
+            app:popUpToInclusive="false" />
     </fragment>
 </navigation>
