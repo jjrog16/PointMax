@@ -21,11 +21,4 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
         repository = CardRepository(cardsDao)
         allCards = repository.allCards
     }
-
-    /**
-     * Launching a new coroutine to insert the data in a non-blocking way
-     */
-    fun insert(card: Card) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(card)
-    }
 }
