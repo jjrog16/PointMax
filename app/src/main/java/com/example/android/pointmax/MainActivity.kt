@@ -23,26 +23,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-    private val newCardActivityRequestCode = 1
-    private lateinit var walletViewModel: WalletViewModel
     
-    // If the activity returns with RESULT_OK, insert the returned word into the database
-    // by calling the insert() method of the WordViewModel.
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        
-        if (requestCode == newCardActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(AddCardToWalletFragment.EXTRA_REPLY)?.let {
-                val card = Card(it)
-                walletViewModel.insert(card)
-            }
-        } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG).show()
-        }
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

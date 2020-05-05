@@ -21,7 +21,6 @@ class AddCardToWalletFragment : Fragment() {
     
     companion object {
         fun newInstance() = AddCardToWalletFragment()
-        const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
     }
     
     private lateinit var viewModel: AddCardToWalletViewModel
@@ -39,15 +38,7 @@ class AddCardToWalletFragment : Fragment() {
         // TODO: Use the ViewModel
         
         add_card_done.setOnClickListener{
-            val replyIntent = Intent()
-            if (TextUtils.isEmpty(card_name.text)) {
-                activity?.setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
-                val cardName = card_name.text.toString()
-                replyIntent.putExtra(EXTRA_REPLY, cardName)
-                activity?.setResult(Activity.RESULT_OK, replyIntent)
-            }
-            activity?.finish()
+        
         }
     }
 }
