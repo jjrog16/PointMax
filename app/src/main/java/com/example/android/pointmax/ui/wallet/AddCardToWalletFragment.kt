@@ -12,7 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
 import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.ui.AddCardToWallet.AddCardToWalletFragmentDirections
 import kotlinx.android.synthetic.main.fragment_add_card_to_wallet.*
 
 
