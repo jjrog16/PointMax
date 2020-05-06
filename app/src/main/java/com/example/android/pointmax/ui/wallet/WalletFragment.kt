@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.MainActivity
 import com.example.android.pointmax.R
-import com.example.android.pointmax.ui.AddCardToWallet.AddCardToWalletViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import kotlinx.android.synthetic.main.fragment_wallet.view.*

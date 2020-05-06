@@ -1,23 +1,15 @@
 package com.example.android.pointmax
 
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.ui.AddCardToWallet.AddCardToWalletFragment
 import com.example.android.pointmax.ui.wallet.WalletFragmentDirections
-import com.example.android.pointmax.ui.wallet.WalletViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
