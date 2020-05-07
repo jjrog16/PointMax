@@ -21,6 +21,9 @@
             app:destination="@id/addCardToWalletFragment"
             app:popUpTo="@id/navigation_wallet"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_navigation_wallet_to_cardDetailsFragment"
+            app:destination="@id/cardDetailsFragment" />
     </fragment>
 
     <fragment
@@ -39,4 +42,9 @@
             app:popUpTo="@id/navigation_wallet"
             app:popUpToInclusive="false" />
     </fragment>
+    <fragment
+        android:id="@+id/cardDetailsFragment"
+        android:name="com.example.android.pointmax.ui.card_details.CardDetailsFragment"
+        android:label="fragment_card_details"
+        tools:layout="@layout/fragment_card_details" />
 </navigation>

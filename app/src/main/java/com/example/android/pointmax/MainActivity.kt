@@ -64,6 +64,10 @@ class MainActivity : AppCompatActivity() {
                     navView.visibility = View.GONE
                     walletFAB.visibility = View.GONE
                 }
+                R.id.cardDetailsFragment -> {
+                    navView.visibility = View.GONE
+                    walletFAB.visibility = View.GONE
+                }
             }
         }
     }
@@ -73,9 +77,9 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     
+    // Takes the user to the Card Details screen from the recyclerview_item onClick attribute
     fun cardDetails(view: View) {
-    
+        val action = WalletFragmentDirections.actionNavigationWalletToCardDetailsFragment()
+        findNavController(R.id.nav_host_fragment).navigate(action)
     }
-    
-    
 }
