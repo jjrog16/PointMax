@@ -78,7 +78,9 @@ class MainActivity : AppCompatActivity() {
     }
     
     // Takes the user to the Card Details screen from the recyclerview_item onClick attribute
-    fun cardDetails(view: View) {
+    // View is suppressed to avoid annoying warning messages. View is necessary for the onClick
+    // attribute of recyclerview_item
+    fun cardDetails(@Suppress("UNUSED_PARAMETER") view: View) {
         val action = WalletFragmentDirections.actionNavigationWalletToCardDetailsFragment()
         findNavController(R.id.nav_host_fragment).navigate(action)
     }

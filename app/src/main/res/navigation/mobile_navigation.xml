@@ -45,6 +45,5 @@
     <fragment
         android:id="@+id/cardDetailsFragment"
         android:name="com.example.android.pointmax.ui.card_details.CardDetailsFragment"
-        android:label="fragment_card_details"
         tools:layout="@layout/fragment_card_details" />
 </navigation>
