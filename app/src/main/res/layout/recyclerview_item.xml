@@ -14,6 +14,7 @@
                 style="@style/card_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="cardDetails"
                 android:background="@android:color/holo_orange_light"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

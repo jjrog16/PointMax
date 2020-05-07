@@ -73,5 +73,9 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
     
+    fun cardDetails(view: View) {
+    
+    }
+    
     
 }
