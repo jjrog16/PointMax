@@ -15,7 +15,7 @@ class CardAdapter(private val context: Context) :
     
     private var cards =  emptyList<Card>()
     class CardViewHolder (itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cardItemView: TextView = itemView.textView
+        val cardItemView: TextView = itemView.card_name
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {

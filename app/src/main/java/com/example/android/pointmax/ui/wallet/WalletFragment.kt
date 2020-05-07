@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -21,12 +23,15 @@ import com.example.android.pointmax.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_wallet.*
 import kotlinx.android.synthetic.main.fragment_wallet.view.*
+import kotlinx.android.synthetic.main.recyclerview_item.*
 import timber.log.Timber
+import java.lang.Exception
 
 class WalletFragment : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: WalletViewModel
+    private lateinit var deleteButton: ImageView
     
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,5 +57,6 @@ class WalletFragment : Fragment() {
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
             cards?.let { adapter?.setCards(it) }
         })
+        
     }
 }

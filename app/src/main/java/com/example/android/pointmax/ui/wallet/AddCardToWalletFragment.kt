@@ -34,7 +34,7 @@ class AddCardToWalletFragment : Fragment() {
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        editCardNameView = card_name
+        editCardNameView = new_card_name
         viewModel = ViewModelProvider(this).get(WalletViewModel::class.java)
     
         // Check if text is empty
