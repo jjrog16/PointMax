@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 
 import com.example.android.pointmax.R
+import com.example.android.pointmax.databinding.FragmentCardDetailsBinding
 
 class CardDetailsFragment : Fragment() {
     
@@ -15,18 +16,19 @@ class CardDetailsFragment : Fragment() {
         fun newInstance() = CardDetailsFragment()
     }
     
-    private lateinit var viewModel: CardDetailsViewModel
-    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_card_details, container, false)
+        val binding: FragmentCardDetailsBinding = FragmentCardDetailsBinding.inflate(layoutInflater)
+        binding.setLifecycleOwner(this)
+        binding.viewModel = ViewModelProvider(
+            this).get(CardDetailsViewModel::class.java)
+        return binding.root
     }
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(CardDetailsViewModel::class.java)
         // TODO: Use the ViewModel
     }
     
