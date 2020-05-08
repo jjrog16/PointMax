@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.android.pointmax.ui.wallet.WalletFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.recyclerview_item.view.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {

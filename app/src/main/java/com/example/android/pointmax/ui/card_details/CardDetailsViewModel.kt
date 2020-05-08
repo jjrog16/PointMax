@@ -1,6 +1,8 @@
 package com.example.android.pointmax.ui.card_details
 
 import android.app.Application
+import android.view.View
+import android.widget.TextView
 import androidx.lifecycle.*
 import com.example.android.pointmax.database.Card
 import com.example.android.pointmax.database.CardRepository
@@ -21,11 +23,11 @@ class CardDetailsViewModel(application: Application) : AndroidViewModel(applicat
         allCards = repository.allCards
     }
     
-    private val _text = MutableLiveData<String>().apply {
-        value = "Details"
+    
+    private var _text = MutableLiveData<String>().apply {
+        value = ""
     }
     val text: LiveData<String> = _text
-    
     
     
 }

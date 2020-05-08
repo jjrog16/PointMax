@@ -58,5 +58,7 @@ class WalletFragment : Fragment() {
             cards?.let { adapter?.setCards(it) }
         })
         
+        
+        
     }
 }
