@@ -25,7 +25,7 @@ class CardDetailsViewModel(application: Application) : AndroidViewModel(applicat
     
     
     private var _text = MutableLiveData<String>().apply {
-        value = ""
+        value = "Card Details "
     }
     val text: LiveData<String> = _text
     
