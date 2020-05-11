@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.recommended.RecommendedFragment">
+        tools:context=".ui.card_details.CardDetailsFragment">
 
         <TextView
             android:id="@+id/text_recommended"
