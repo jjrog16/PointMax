@@ -26,39 +26,64 @@ import kotlinx.android.synthetic.main.fragment_wallet.view.*
 import kotlinx.android.synthetic.main.recyclerview_item.*
 import timber.log.Timber
 import java.lang.Exception
+import com.example.android.pointmax.databinding.FragmentWalletBinding
 
 class WalletFragment : Fragment() {
-    private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: WalletViewModel
-    private lateinit var deleteButton: ImageView
+    /**
+     * Lazily initialize our [WalletViewModel]
+     */
+    private val viewModel: WalletViewModel by lazy {
+        ViewModelProvider(this).get(WalletViewModel::class.java)
+    }
     
+    /**
+     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
+     * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_wallet, container, false)
-        recyclerView = rootView.wallet_recyclerview
-        val linearLayoutManager = LinearLayoutManager(context)
-        viewManager = linearLayoutManager
-        return rootView
-    }
+        val binding = FragmentWalletBinding.inflate(inflater)
     
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(WalletViewModel::class.java)
-        
-        // Adapter that holds the current fragment context
-        val adapter = activity?.let { CardAdapter(it) }
-        wallet_recyclerview.adapter = adapter
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.lifecycleOwner = this
     
-        // Observe the ViewModel
-        viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
-            cards?.let { adapter?.setCards(it) }
+        // Giving the binding access to the WalletViewModel
+        binding.viewModel = viewModel
+    
+        // Sets the adapter of the wallet_recyclerview RecyclerView with clickHandler lambda that
+        // tells the viewModel when our card is clicked
+        binding.walletRecyclerview.adapter = CardAdapter(CardAdapter.OnClickListener {
+            //viewModel.displayCardDetails(it)
         })
         
+        return binding.root
         
         
+        
+//        val rootView = inflater.inflate(R.layout.fragment_wallet, container, false)
+//        recyclerView = rootView.wallet_recyclerview
+//        val linearLayoutManager = LinearLayoutManager(context)
+//        viewManager = linearLayoutManager
+//        return rootView
     }
+    
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        super.onActivityCreated(savedInstanceState)
+//        viewModel = ViewModelProvider(this).get(WalletViewModel::class.java)
+//
+//        // Adapter that holds the current fragment context
+//        val adapter = activity?.let { CardAdapter(it) }
+//        wallet_recyclerview.adapter = adapter
+//
+//        // Observe the ViewModel
+//        viewModel.allCards.observe(viewLifecycleOwner, Observer { cards ->
+//            cards?.let { adapter?.setCards(it) }
+//        })
+//
+//
+//
+//    }
 }
