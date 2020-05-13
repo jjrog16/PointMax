@@ -6,7 +6,7 @@ import com.example.android.pointmax.database.Card
 
 
 /**
- * When there is no Mars property data (data is null), hide the [RecyclerView], otherwise show it.
+ * When there are no Cards (data is null), hide the [RecyclerView], otherwise show it.
  */
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Card>?) {

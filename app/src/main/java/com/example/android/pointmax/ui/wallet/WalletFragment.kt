@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 
 import com.example.android.pointmax.CardAdapter
 
@@ -45,13 +47,13 @@ class WalletFragment : Fragment() {
         // Observe the navigateToSelectedCard LiveData and Navigate when it isn't null
         // After navigating, call displayCardDetailsComplete() so that the ViewModel is ready
         // for another navigation event
-//        viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {
-//            if (null != it) {
-//                // Must find the NavController from the Fragment
-//                this.findNavController().navigate(WalletFragmentDirections.actionNavigationWalletToCardDetailsFragment())
-//                viewModel.displayCardDetailsComplete()
-//            }
-//        })
+        viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {
+            if (null != it) {
+                // Must find the NavController from the Fragment
+                this.findNavController().navigate(WalletFragmentDirections.actionNavigationWalletToCardDetailsFragment())
+                viewModel.displayCardDetailsComplete()
+            }
+        })
         
         return binding.root
         
