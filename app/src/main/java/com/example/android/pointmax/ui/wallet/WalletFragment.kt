@@ -14,12 +14,7 @@ import com.example.android.pointmax.CardAdapter
 import com.example.android.pointmax.databinding.FragmentWalletBinding
 
 class WalletFragment : Fragment() {
-    /**
-     * Lazily initialize our [WalletViewModel]
-     */
-    private val viewModel: WalletViewModel by lazy {
-        ViewModelProvider(this).get(WalletViewModel::class.java)
-    }
+    
     
     /**
      * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
@@ -30,12 +25,13 @@ class WalletFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        
-        
         val binding = FragmentWalletBinding.inflate(inflater)
     
+        val viewModel: WalletViewModel = ViewModelProvider(this).get(WalletViewModel::class.java)
+        
+    
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
+        binding.setLifecycleOwner(this)
     
         // Giving the binding access to the WalletViewModel
         binding.viewModel = viewModel
