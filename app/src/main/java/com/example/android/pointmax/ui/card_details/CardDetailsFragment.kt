@@ -19,18 +19,16 @@ class CardDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val application = requireNotNull(activity).application
         val binding: FragmentCardDetailsBinding = FragmentCardDetailsBinding.inflate(layoutInflater)
-        binding.lifecycleOwner = this
+        binding.setLifecycleOwner(this)
+        
+        // TODO: Fix safe arg binding
+        val card = CardDetailsFragmentArgs.fromBundle(requireArguments()).selectedCard
+        val viewModelFactory = CardDetailsViewModelFactory(card, application)
         binding.viewModel = ViewModelProvider(
             this).get(CardDetailsViewModel::class.java)
-            
         return binding.root
-    }
-    
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-        
     }
     
 }
