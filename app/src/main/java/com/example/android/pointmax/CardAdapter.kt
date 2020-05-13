@@ -17,8 +17,6 @@ import kotlinx.android.synthetic.main.recyclerview_item.view.*
 class CardAdapter(val onClickListener: OnClickListener) :
     ListAdapter<Card, CardAdapter.CardViewHolder>(DiffCallback) {
     
-    //private var cards =  emptyList<Card>()
-    
     /**
      * The CardViewHolder constructor takes the binding variable from the associated
      * LayoutViewItem, which nicely gives it access to the full [Card] information.
@@ -30,7 +28,6 @@ class CardAdapter(val onClickListener: OnClickListener) :
             // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()
         }
-//        val cardItemView: TextView = itemView.card_name
     }
     
     /**
@@ -51,9 +48,6 @@ class CardAdapter(val onClickListener: OnClickListener) :
      * Create new [RecyclerView] item views (invoked by the layout manager)
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-//        val itemView = LayoutInflater.from(context)
-//            .inflate(R.layout.recyclerview_item, parent, false)
-//        return CardViewHolder(itemView)
         return CardViewHolder(RecyclerviewItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
     
@@ -76,6 +70,4 @@ class CardAdapter(val onClickListener: OnClickListener) :
     class OnClickListener(val clickListener: (cards : Card) -> Unit) {
         fun onClick(cards:Card) = clickListener(cards)
     }
-
-    //override fun getItemCount() = cards.size
 }
