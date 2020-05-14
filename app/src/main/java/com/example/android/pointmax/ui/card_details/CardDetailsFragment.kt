@@ -1,11 +1,10 @@
 package com.example.android.pointmax.ui.card_details
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import com.example.android.pointmax.R
 
 import com.example.android.pointmax.databinding.FragmentCardDetailsBinding
 
@@ -13,6 +12,13 @@ class CardDetailsFragment : Fragment() {
     
     companion object {
         fun newInstance() = CardDetailsFragment()
+    }
+    
+    /**
+     * Lazily initialize our [OverviewViewModel].
+     */
+    private val viewModel: CardDetailsViewModel by lazy {
+        ViewModelProvider(this).get(CardDetailsViewModel::class.java)
     }
     
     override fun onCreateView(
@@ -28,7 +34,25 @@ class CardDetailsFragment : Fragment() {
         val viewModelFactory = CardDetailsViewModelFactory(card, application)
         binding.viewModel = ViewModelProvider(
             this, viewModelFactory).get(CardDetailsViewModel::class.java)
+    
+        setHasOptionsMenu(true)
         return binding.root
     }
     
+    /**
+     * Inflates the overflow menu that contains options.
+     */
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.overflow_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+    
+    /**
+     * Updates the filter in the [OverviewViewModel] when the menu items are selected from the
+     * overflow menu.
+     */
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // TODO stuff when option is clicked
+        return true
+    }
 }
