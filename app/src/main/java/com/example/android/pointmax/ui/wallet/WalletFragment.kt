@@ -53,7 +53,7 @@ class WalletFragment : Fragment() {
             if (null != it) {
                 // Must find the NavController from the Fragment
                 this.findNavController()
-                    .navigate(WalletFragmentDirections.actionNavigationWalletToCardDetailsFragment())
+                    .navigate(WalletFragmentDirections.actionNavigationWalletToCardDetailsFragment(it.card))
                 viewModel.displayCardDetailsComplete()
             }
         })

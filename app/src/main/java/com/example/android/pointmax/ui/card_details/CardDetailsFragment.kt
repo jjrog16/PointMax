@@ -27,7 +27,7 @@ class CardDetailsFragment : Fragment() {
         val card = CardDetailsFragmentArgs.fromBundle(requireArguments()).selectedCard
         val viewModelFactory = CardDetailsViewModelFactory(card, application)
         binding.viewModel = ViewModelProvider(
-            this).get(CardDetailsViewModel::class.java)
+            this, viewModelFactory).get(CardDetailsViewModel::class.java)
         return binding.root
     }
     

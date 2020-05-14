@@ -3,13 +3,12 @@ package com.example.android.pointmax.ui.card_details
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.android.pointmax.database.Card
 
 /**
  * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.
  */
 class CardDetailsViewModelFactory(
-    private val card: Card,
+    private val card: String,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")

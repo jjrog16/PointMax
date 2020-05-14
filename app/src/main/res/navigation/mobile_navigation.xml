@@ -48,6 +48,7 @@
         tools:layout="@layout/fragment_card_details" >
         <argument
             android:name="selectedCard"
-            app:argType="com.example.android.pointmax.ui.database.Card"/>
+            app:argType="string"
+            />
     </fragment>
 </navigation>

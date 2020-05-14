@@ -1,19 +1,15 @@
 package com.example.android.pointmax.ui.card_details
 
 import android.app.Application
-import android.view.View
-import android.widget.TextView
 import androidx.lifecycle.*
 import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.database.CardRepository
-import com.example.android.pointmax.database.CardRoomDatabase
 
-class CardDetailsViewModel(card: Card, application: Application) : AndroidViewModel(application) {
-    private val _selectedCard = MutableLiveData<Card>()
+class CardDetailsViewModel(card: String, application: Application) : AndroidViewModel(application) {
+    private val _selectedCard = MutableLiveData<String>()
     
     // The external LiveData for the SelectedCard
-    val selectedCard: LiveData<Card>
-        get() = _selectedCard
+    val selectedCard: String
+        get() = _selectedCard.toString()
     
     // Initialize the _selectedProperty MutableLiveData
     init {
