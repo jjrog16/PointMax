@@ -2,9 +2,10 @@ package com.example.android.pointmax.ui.card_details
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.android.pointmax.database.Card
 
 class CardDetailsViewModel(card: String, application: Application) : AndroidViewModel(application) {
+    
+    // Because we need only the name of the card passed as a variable, it is of type String
     private val _selectedCard = MutableLiveData<String>()
     
     // The external LiveData for the SelectedCard
