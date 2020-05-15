@@ -2,6 +2,7 @@ package com.example.android.pointmax.ui.card_details
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.android.pointmax.R
@@ -12,13 +13,6 @@ class CardDetailsFragment : Fragment() {
     
     companion object {
         fun newInstance() = CardDetailsFragment()
-    }
-    
-    /**
-     * Lazily initialize our [OverviewViewModel].
-     */
-    private val viewModel: CardDetailsViewModel by lazy {
-        ViewModelProvider(this).get(CardDetailsViewModel::class.java)
     }
     
     override fun onCreateView(
@@ -53,6 +47,11 @@ class CardDetailsFragment : Fragment() {
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // TODO stuff when option is clicked
+        Toast.makeText(
+            context,
+            "Hi",
+            Toast.LENGTH_SHORT
+        ).show()
         return true
     }
 }
