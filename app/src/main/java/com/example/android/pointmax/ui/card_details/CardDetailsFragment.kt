@@ -40,18 +40,4 @@ class CardDetailsFragment : Fragment() {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
-    
-    /**
-     * Updates the filter in the [OverviewViewModel] when the menu items are selected from the
-     * overflow menu.
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // TODO stuff when option is clicked
-        Toast.makeText(
-            context,
-            "Hi",
-            Toast.LENGTH_SHORT
-        ).show()
-        return true
-    }
 }

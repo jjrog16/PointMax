@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.menu.ActionMenuItem
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.pointmax.ui.wallet.WalletFragmentDirections
@@ -74,7 +76,12 @@ class MainActivity : AppCompatActivity() {
     }
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        findNavController(R.id.nav_host_fragment).navigateUp()
+        when (item) {
+            is ActionMenuItem -> {
+                findNavController(R.id.nav_host_fragment).navigateUp()
+            }
+        }
+        Timber.i("$item pressed")
         return super.onOptionsItemSelected(item)
     }
 }
