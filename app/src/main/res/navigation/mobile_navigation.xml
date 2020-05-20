@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_recommended"/>
     <fragment
         android:id="@+id/addCardToWalletFragment"
-        android:name="com.example.android.pointmax.ui.wallet.AddCardToWalletFragment"
+        android:name="com.example.android.pointmax.ui.add_card.AddCardToWalletFragment"
         android:label="@string/title_Add_Card_To_Wallet"
         tools:layout="@layout/fragment_add_card_to_wallet" >
         <action

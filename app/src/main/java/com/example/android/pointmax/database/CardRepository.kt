@@ -14,7 +14,7 @@ class CardRepository(private val cardDao: CardDao) {
         cardDao.insert(card)
     }
     
-    suspend fun delete(card: String){
+    suspend fun deleteByName(card: String){
         cardDao.deleteByName(card)
     }
 }

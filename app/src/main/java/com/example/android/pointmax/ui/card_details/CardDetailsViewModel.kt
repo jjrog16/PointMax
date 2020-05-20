@@ -44,7 +44,7 @@ class CardDetailsViewModel(cardName: String, application: Application) : Android
     /**
      * Launching a new coroutine to delete the data in a non-blocking way
      */
-    fun deleteByName(card: String) = viewModelScope.launch(Dispatchers.IO) {
-        repository.delete(card)
+    fun deleteByName(cardName: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteByName(cardName)
     }
 }
