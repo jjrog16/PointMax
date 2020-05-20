@@ -32,12 +32,4 @@ class CardDetailsFragment : Fragment() {
         setHasOptionsMenu(true)
         return binding.root
     }
-    
-    /**
-     * Inflates the overflow menu that contains options.
-     */
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.overflow_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 }
