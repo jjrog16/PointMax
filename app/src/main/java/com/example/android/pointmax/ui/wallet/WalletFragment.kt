@@ -35,7 +35,7 @@ class WalletFragment : Fragment() {
         val binding = FragmentWalletBinding.inflate(inflater)
         
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
     
         // Giving the binding access to the WalletViewModel
         binding.viewModel = viewModel
@@ -50,7 +50,7 @@ class WalletFragment : Fragment() {
         // After navigating, call displayCardDetailsComplete() so that the ViewModel is ready
         // for another navigation event
         viewModel.navigateToSelectedCard.observe(viewLifecycleOwner, Observer {
-            if (null != it) {
+            if (it != null) {
                 // Must find the NavController from the Fragment
                 this.findNavController()
                     .navigate(WalletFragmentDirections.actionNavigationWalletToCardDetailsFragment(it.card))

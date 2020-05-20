@@ -1,10 +1,7 @@
 package com.example.android.pointmax.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 
 @Dao
@@ -18,4 +15,7 @@ interface CardDao {
 
     @Query("DELETE FROM card_table")
     suspend fun deleteAll()
+    
+    @Query("DELETE FROM card_table WHERE cardName = :name")
+    suspend fun deleteByName(name: String)
 }

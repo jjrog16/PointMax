@@ -21,15 +21,25 @@ class CardDetailsFragment : Fragment() {
     ): View? {
         val application = requireNotNull(activity).application
         val binding: FragmentCardDetailsBinding = FragmentCardDetailsBinding.inflate(layoutInflater)
-        binding.setLifecycleOwner(this)
+    
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.lifecycleOwner = this
         
-        // TODO: Fix safe arg binding
+        // The card name string value passed through the fragment
         val card = CardDetailsFragmentArgs.fromBundle(requireArguments()).selectedCard
+        
+        // The ViewModelFactory that takes the card name string and creates a ViewModel
+        // with the card name string
         val viewModelFactory = CardDetailsViewModelFactory(card, application)
+    
+        // Giving the binding access to the CardDetailsViewModel
         binding.viewModel = ViewModelProvider(
             this, viewModelFactory).get(CardDetailsViewModel::class.java)
     
-        setHasOptionsMenu(true)
+        
+        
+        
+        
         return binding.root
     }
 }

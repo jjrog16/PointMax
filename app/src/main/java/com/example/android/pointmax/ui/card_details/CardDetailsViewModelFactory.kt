@@ -8,13 +8,13 @@ import androidx.lifecycle.ViewModelProvider
  * Simple ViewModel factory that provides the MarsProperty and context to the ViewModel.
  */
 class CardDetailsViewModelFactory(
-    private val card: String,
+    private val cardName: String,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CardDetailsViewModel::class.java)) {
-            return CardDetailsViewModel(card, application) as T
+            return CardDetailsViewModel(cardName, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
