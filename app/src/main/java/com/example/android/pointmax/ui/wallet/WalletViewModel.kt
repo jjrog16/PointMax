@@ -8,7 +8,6 @@ import com.example.android.pointmax.database.CardRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 
 class WalletViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: CardRepository
@@ -19,7 +18,6 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     
     // The external LiveData interface to the property is immutable, so only this class can modify
     val allCards: LiveData<List<Card>>
-    
     
     // Internally, we use a MutableLiveData to handle navigation to the selected cxa
     private val _navigateToSelectedCard = MutableLiveData<Card>()
@@ -33,12 +31,6 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
-    
-    init {
-        val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
-        repository = CardRepository(cardsDao)
-        allCards = repository.allCards
-    }
     
     /**
      * When the card is clicked, set the [_navigateToSelectedCard] [MutableLiveData]
@@ -55,10 +47,9 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
         _navigateToSelectedCard.value = null
     }
     
-    /**
-     * Launching a new coroutine to insert the data in a non-blocking way
-     */
-    fun insert(card: Card) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insert(card)
+    init {
+        val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
+        repository = CardRepository(cardsDao)
+        allCards = repository.allCards
     }
 }

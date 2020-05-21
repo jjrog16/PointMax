@@ -12,8 +12,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
 import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.ui.wallet.AddCardToWalletFragmentDirections
-import com.example.android.pointmax.ui.wallet.WalletViewModel
 import kotlinx.android.synthetic.main.fragment_add_card_to_wallet.*
 
 
@@ -24,7 +22,7 @@ class AddCardToWalletFragment : Fragment() {
             AddCardToWalletFragment()
     }
     
-    private lateinit var viewModel: WalletViewModel
+    private lateinit var viewModel: AddCardToWalletViewModel
     private lateinit var editCardNameView: EditText
     
     override fun onCreateView(
@@ -37,7 +35,7 @@ class AddCardToWalletFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         editCardNameView = new_card_name
-        viewModel = ViewModelProvider(this).get(WalletViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(AddCardToWalletViewModel::class.java)
     
         // Check if text is empty
         // If empty, do nothing
