@@ -28,7 +28,7 @@ class CardDetailsViewModel(cardName: String, application: Application) : Android
     
     
     init {
-        // Initialize the _selectedProperty MutableLiveData
+        // Initialize the _selectedCard MutableLiveData
         _selectedCard.value = cardName
         
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()

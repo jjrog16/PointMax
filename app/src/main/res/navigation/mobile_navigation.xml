@@ -51,5 +51,8 @@
             android:name="selectedCard"
             app:argType="string"
             />
+        <action
+            android:id="@+id/action_cardDetailsFragment_to_navigation_wallet"
+            app:destination="@id/navigation_wallet" />
     </fragment>
 </navigation>

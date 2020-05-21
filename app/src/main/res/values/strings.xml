@@ -8,4 +8,6 @@
     <string name="add_card_done">Done</string>
     <string name="empty_not_saved">Card not saved. Name empty</string>
     <string name="delete_card">Delete Card</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
