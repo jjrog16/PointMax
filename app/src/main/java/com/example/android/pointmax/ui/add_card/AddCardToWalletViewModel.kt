@@ -44,4 +44,11 @@ class AddCardToWalletViewModel(cardName: String? = null, application: Applicatio
     fun insert(card: Card) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(card)
     }
+    
+    /**
+     * Launching a new coroutine to update the data in a non-blocking way
+     */
+    fun edit(newName: String, oldName: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.editName(newName, oldName)
+    }
 }
