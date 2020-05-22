@@ -29,14 +29,22 @@ class AddCardToWalletFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val application = requireNotNull(activity).application
+    
+        // Card value passed in through Fragment as a string
+        val cardToChange = AddCardToWalletFragmentArgs.fromBundle(requireArguments()).cardToEdit
+        
+        val viewModelFactory = AddCardToWalletViewModelFactory(cardToChange,application)
+        
+        viewModel = ViewModelProvider(this, viewModelFactory).get(AddCardToWalletViewModel::class.java)
+        
         return inflater.inflate(R.layout.fragment_add_card_to_wallet, container, false)
     }
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         editCardNameView = new_card_name
-        viewModel = ViewModelProvider(this).get(AddCardToWalletViewModel::class.java)
-    
+        
         // Check if text is empty
         // If empty, do nothing
         // If there is text, then start coroutine to load into database

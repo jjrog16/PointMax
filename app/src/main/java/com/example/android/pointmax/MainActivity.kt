@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     
         // Navigate to AddCardToWalletFragment
         walletFAB.setOnClickListener {
-            val action = WalletFragmentDirections.actionNavigationWalletToAddCardToWalletFragment()
+            val action = WalletFragmentDirections.actionNavigationWalletToAddCardToWalletFragment("")
             navController.navigate(action)
         }
         
