@@ -54,7 +54,7 @@ class AddCardToWalletFragment : Fragment() {
             ViewModelProvider(this, viewModelFactory).get(AddCardToWalletViewModel::class.java)
         
         // If we are coming from another card, set this to true
-        var isValuePassed: Boolean = false
+        var isValuePassed = false
         
         // If the user selects to add a new card, the default value passed is an empty string,
         // so only have the text set if the user is coming from a card
@@ -63,10 +63,9 @@ class AddCardToWalletFragment : Fragment() {
             editCardNameView.setText(cardToChange)
         }
         
-        var cardToBeEntered = editCardNameView.text.toString()
-        
-        val cardNew = Card(cardToBeEntered)
-        
+        // Holds the entered value of EditText
+        var cardToBeEntered: String
+    
         // Check if text is empty
         // If empty, do nothing
         // If there is text, then start coroutine to load into database
@@ -81,30 +80,26 @@ class AddCardToWalletFragment : Fragment() {
                     ).show()
                 }
                 isValuePassed -> {
+                    // Take new entered input
+                    cardToBeEntered = editCardNameView.text.toString()
+                    
                     // Edit the card
                     if (cardToBeEntered != cardToChange) {
                         cardToBeEntered.let {
-                            viewModel.edit(cardToBeEntered, cardToChange)
+                            viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
                         }
                     }
-                    cardToBeEntered = editCardNameView.text.toString()
-//                    val action =
-//                        AddCardToWalletFragmentDirections.actionAddCardToWalletFragmentToCardDetailsFragment(
-//                            cardToBeEntered
-//                        )
-//                    findNavController().navigate(action)
-                    
-                    // Once value is added into the database, go back to the wallet
-                    // This is only to check that the values have been updated.
+                    // Navigate back to card details under the new edited card
                     val action =
-                        AddCardToWalletFragmentDirections.actionAddCardToWalletFragmentToNavigationWallet()
+                        AddCardToWalletFragmentDirections.actionAddCardToWalletFragmentToCardDetailsFragment(
+                            cardToBeEntered
+                        )
                     findNavController().navigate(action)
-                    
-                    //TODO: Find a way to update the Wallet when card is updated
-                
                 }
                 else -> {
+                    // Take new entered input
                     cardToBeEntered = editCardNameView.text.toString()
+                    
                     // Insert a new card
                     cardToBeEntered.let {
                         val card = Card(it)

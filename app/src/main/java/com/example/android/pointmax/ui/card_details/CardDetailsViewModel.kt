@@ -25,8 +25,6 @@ class CardDetailsViewModel(cardName: String, application: Application) : Android
     val selectedCard: String
         get() = _selectedCard.toString()
     
-    
-    
     init {
         // Initialize the _selectedCard MutableLiveData
         _selectedCard.value = cardName
