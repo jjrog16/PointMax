@@ -66,18 +66,9 @@ class CardDetailsFragment : Fragment() {
             findNavController().navigate(action)
         }
         
-        // TODO: Setup Edit button to take the current text value, pass that into AddCardToWalletViewModel by
-        // creating a ViewModelFactory that takes a String and has it defaulted to null but can be
-        // changed to whatever value is passed to it, and then saves the new value.
         edit_button.setOnClickListener {
             val currentCard = currentCardText.text.toString()
-            currentCard.let {
-                Toast.makeText(
-                    context,
-                    "Edit button pressed",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+            
             // Once edit is pressed, go to AddCard
             val action =
                 CardDetailsFragmentDirections.actionCardDetailsFragmentToAddCardToWalletFragment(currentCard)
