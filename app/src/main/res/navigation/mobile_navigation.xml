@@ -59,7 +59,8 @@
             />
         <action
             android:id="@+id/action_cardDetailsFragment_to_navigation_wallet"
-            app:destination="@id/navigation_wallet" />
+            app:destination="@id/navigation_wallet"
+            app:popUpTo="@id/navigation_wallet" />
         <action
             android:id="@+id/action_cardDetailsFragment_to_addCardToWalletFragment"
             app:destination="@id/addCardToWalletFragment" />

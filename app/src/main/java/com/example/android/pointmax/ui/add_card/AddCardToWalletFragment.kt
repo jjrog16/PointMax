@@ -1,14 +1,18 @@
 package com.example.android.pointmax.ui.add_card
 
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
@@ -39,6 +43,13 @@ class AddCardToWalletFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val application = requireNotNull(activity).application
+        
+        // Called after the operation is completed in order to hide the keyboard when EditText field
+        // is gone.
+        fun hideKeyboard(context: Context, editText: EditText) {
+            val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(editText.windowToken,0)
+        }
         
         editCardNameView = new_card_name
         
@@ -89,12 +100,18 @@ class AddCardToWalletFragment : Fragment() {
                             viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
                         }
                     }
-                    // Navigate back to card details under the new edited card
+                    /*// Navigate back to card details under the new edited card
                     val action =
                         AddCardToWalletFragmentDirections.actionAddCardToWalletFragmentToCardDetailsFragment(
                             cardToBeEntered
-                        )
+                        )*/
+                    
+                    // Go back to wallet after finishing the edit
+                    val action = AddCardToWalletFragmentDirections.actionAddCardToWalletFragmentToNavigationWallet()
                     findNavController().navigate(action)
+    
+                    // Hides keyboard after finishing input
+                    context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
                 }
                 else -> {
                     // Take new entered input
@@ -110,6 +127,9 @@ class AddCardToWalletFragment : Fragment() {
                     val action =
                         AddCardToWalletFragmentDirections.actionAddCardToWalletFragmentToNavigationWallet()
                     findNavController().navigate(action)
+                    
+                    // Hides keyboard after finishing input
+                    context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
                 }
             }
         }

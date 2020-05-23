@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
@@ -73,6 +74,7 @@ class CardDetailsFragment : Fragment() {
             val action =
                 CardDetailsFragmentDirections.actionCardDetailsFragmentToAddCardToWalletFragment(currentCard)
             findNavController().navigate(action)
+            
         }
     }
 }
