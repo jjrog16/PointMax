@@ -42,9 +42,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     
-        // Navigate to AddCustomCardFragment
+        // Navigate to AddCardFragment
         walletFAB.setOnClickListener {
-            //val action = WalletFragmentDirections.actionNavigationWalletToAddCustomCardFragment("")
             val action = WalletFragmentDirections.actionNavigationWalletToAddCardFragment()
             navController.navigate(action)
         }

@@ -32,8 +32,6 @@ class AddCustomCardFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        
-        
         return inflater.inflate(R.layout.fragment_add_custom_card, container, false)
     }
     
@@ -41,28 +39,17 @@ class AddCustomCardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val application = requireNotNull(activity).application
         
-        // Called after the operation is completed in order to hide the keyboard when EditText field
-        // is gone.
-        fun hideKeyboard(context: Context, editText: EditText) {
-            val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(editText.windowToken,0)
-        }
-        
+        // EditText field
         editCardNameView = new_card_name
-        
-        // Card value passed in through Fragment as a string
-        val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
-        Timber.i("I came from: $cardToChange")
-        
-        // The ViewModelFactory that takes the card name string and creates a ViewModel
-        // with the card name string
-        val viewModelFactory = AddCustomCardViewModelFactory(cardToChange, application)
-        
-        viewModel =
-            ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
         
         // If we are coming from another card, set this to true
         var isValuePassed = false
+        
+        // Card value passed in through Fragment as a string
+        val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
+    
+        // Holds the entered value of EditText
+        var cardToBeEntered: String
         
         // If the user selects to add a new card, the default value passed is an empty string,
         // so only have the text set if the user is coming from a card
@@ -71,9 +58,14 @@ class AddCustomCardFragment : Fragment() {
             editCardNameView.setText(cardToChange)
         }
         
-        // Holds the entered value of EditText
-        var cardToBeEntered: String
-    
+        // The ViewModelFactory that takes the card name string and creates a ViewModel
+        // with the card name string
+        val viewModelFactory = AddCustomCardViewModelFactory(cardToChange, application)
+        
+        // Create ViewModel with ViewModelFactory
+        viewModel =
+            ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
+        
         // Check if text is empty
         // If empty, do nothing
         // If there is text, then start coroutine to load into database
@@ -83,7 +75,7 @@ class AddCustomCardFragment : Fragment() {
                     editCardNameView.text.toString().trim().matches("\\s*".toRegex()) -> {
                     Toast.makeText(
                         context,
-                        "Card not saved because it is empty",
+                        getString(R.string.empty_not_saved),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -91,17 +83,12 @@ class AddCustomCardFragment : Fragment() {
                     // Take new entered input
                     cardToBeEntered = editCardNameView.text.toString().trim()
                     
-                    // Edit the card
+                    // Edit the card only if the card entered is not the same
                     if (cardToBeEntered != cardToChange) {
                         cardToBeEntered.let {
                             viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
                         }
                     }
-                    /*// Navigate back to card details under the new edited card
-                    val action =
-                        AddCardToWalletFragmentDirections.actionAddCardToWalletFragmentToCardDetailsFragment(
-                            cardToBeEntered
-                        )*/
                     
                     // Go back to wallet after finishing the edit
                     val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
@@ -130,6 +117,13 @@ class AddCustomCardFragment : Fragment() {
                 }
             }
         }
+    }
+    
+    // Called after the operation is completed in order to hide the keyboard when EditText field
+    // is gone.
+    private fun hideKeyboard(context: Context, editText: EditText) {
+        val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(editText.windowToken,0)
     }
 }
 

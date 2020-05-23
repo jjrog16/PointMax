@@ -3,12 +3,12 @@
     <string name="title_home">Home</string>
     <string name="title_wallet">Wallet</string>
     <string name="title_recommended">Recommended</string>
-    <string name="title_Add_Card_To_Wallet">Add Card</string>
     <string name="enter_card_name">Enter card name</string>
     <string name="add_card_done">Done</string>
-    <string name="empty_not_saved">Card not saved. Name empty</string>
+    <string name="empty_not_saved">You didn\'t enter a name, silly</string>
     <string name="delete_card">Delete Card</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="don_t_see_your_card_add_your_own">Don\'t see your card? Add your own</string>
+    <string name="don_t_see_your_card_add_your_own">Don\'t see your card? Add your own!</string>
+    <string name="add_a_card">Add a Card</string>
 </resources>

@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/addCustomCardFragment"
         android:name="com.example.android.pointmax.ui.add_custom_card.AddCustomCardFragment"
-        android:label="@string/title_Add_Card_To_Wallet"
+        android:label="@string/add_a_card"
         tools:layout="@layout/fragment_add_custom_card" >
         <argument
             android:name="cardToEdit"
@@ -66,7 +66,7 @@
     <fragment
         android:id="@+id/addCardFragment"
         android:name="com.example.android.pointmax.ui.add_new_card.AddCardFragment"
-        android:label="fragment_add_card"
+        android:label="@string/add_a_card"
         tools:layout="@layout/fragment_add_card" >
         <action
             android:id="@+id/action_addCardFragment_to_addCustomCardFragment"
