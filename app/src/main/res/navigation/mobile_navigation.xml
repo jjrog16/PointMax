@@ -65,4 +65,9 @@
             android:id="@+id/action_cardDetailsFragment_to_addCustomCardFragment"
             app:destination="@id/addCustomCardFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.example.android.pointmax.ui.add_new_card.AddCardFragment"
+        android:label="fragment_add_card"
+        tools:layout="@layout/fragment_add_card" />
 </navigation>
