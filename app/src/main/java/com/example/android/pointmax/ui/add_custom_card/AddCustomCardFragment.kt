@@ -89,7 +89,7 @@ class AddCustomCardFragment : Fragment() {
                 }
                 isValuePassed -> {
                     // Take new entered input
-                    cardToBeEntered = editCardNameView.text.toString()
+                    cardToBeEntered = editCardNameView.text.toString().trim()
                     
                     // Edit the card
                     if (cardToBeEntered != cardToChange) {
@@ -112,7 +112,7 @@ class AddCustomCardFragment : Fragment() {
                 }
                 else -> {
                     // Take new entered input
-                    cardToBeEntered = editCardNameView.text.toString()
+                    cardToBeEntered = editCardNameView.text.toString().trim()
                     
                     // Insert a new card
                     cardToBeEntered.let {

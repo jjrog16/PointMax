@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 
 import com.example.android.pointmax.R
+import kotlinx.android.synthetic.main.fragment_add_card.*
 
 class AddCardFragment : Fragment() {
     
@@ -28,6 +30,11 @@ class AddCardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AddCardViewModel::class.java)
         // TODO: Use the ViewModel
+        
+        add_own_card.setOnClickListener {
+            val action = AddCardFragmentDirections.actionAddCardFragmentToAddCustomCardFragment("")
+            findNavController().navigate(action)
+        }
     }
     
 }

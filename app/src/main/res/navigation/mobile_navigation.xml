@@ -17,13 +17,11 @@
         android:label="@string/title_wallet"
         tools:layout="@layout/fragment_wallet" >
         <action
-            android:id="@+id/action_navigation_wallet_to_addCustomCardFragment"
-            app:destination="@id/addCustomCardFragment"
-            app:popUpTo="@id/navigation_wallet"
-            app:popUpToInclusive="false" />
-        <action
             android:id="@+id/action_navigation_wallet_to_cardDetailsFragment"
             app:destination="@id/cardDetailsFragment" />
+        <action
+            android:id="@+id/action_navigation_wallet_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
     </fragment>
 
     <fragment
@@ -69,5 +67,9 @@
         android:id="@+id/addCardFragment"
         android:name="com.example.android.pointmax.ui.add_new_card.AddCardFragment"
         android:label="fragment_add_card"
-        tools:layout="@layout/fragment_add_card" />
+        tools:layout="@layout/fragment_add_card" >
+        <action
+            android:id="@+id/action_addCardFragment_to_addCustomCardFragment"
+            app:destination="@id/addCustomCardFragment" />
+    </fragment>
 </navigation>

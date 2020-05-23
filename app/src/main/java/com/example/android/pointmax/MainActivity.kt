@@ -44,7 +44,8 @@ class MainActivity : AppCompatActivity() {
     
         // Navigate to AddCustomCardFragment
         walletFAB.setOnClickListener {
-            val action = WalletFragmentDirections.actionNavigationWalletToAddCustomCardFragment("")
+            //val action = WalletFragmentDirections.actionNavigationWalletToAddCustomCardFragment("")
+            val action = WalletFragmentDirections.actionNavigationWalletToAddCardFragment()
             navController.navigate(action)
         }
         
@@ -68,6 +69,10 @@ class MainActivity : AppCompatActivity() {
                     walletFAB.visibility = View.GONE
                 }
                 R.id.cardDetailsFragment -> {
+                    navView.visibility = View.GONE
+                    walletFAB.visibility = View.GONE
+                }
+                R.id.addCardFragment -> {
                     navView.visibility = View.GONE
                     walletFAB.visibility = View.GONE
                 }
