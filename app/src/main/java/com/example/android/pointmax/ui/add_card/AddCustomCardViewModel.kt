@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class AddCardToWalletViewModel(cardName: String? = null, application: Application) : AndroidViewModel(application) {
+class AddCustomCardViewModel(cardName: String? = null, application: Application) : AndroidViewModel(application) {
     private val repository: CardRepository
     // Using LiveData and caching what getAlphabetizedWords returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the

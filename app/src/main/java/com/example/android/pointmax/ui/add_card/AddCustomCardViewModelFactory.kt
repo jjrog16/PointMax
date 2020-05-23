@@ -8,14 +8,14 @@ import androidx.lifecycle.ViewModelProvider
 /**
  * Simple ViewModel factory that provides the card name and context to the ViewModel.
  */
-class AddCardToWalletViewModelFactory(
+class AddCustomCardViewModelFactory(
     private val cardName: String?,
     private val application: Application
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(AddCardToWalletViewModel::class.java)) {
-            return AddCardToWalletViewModel(cardName, application) as T
+        if (modelClass.isAssignableFrom(AddCustomCardViewModel::class.java)) {
+            return AddCustomCardViewModel(cardName, application) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

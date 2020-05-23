@@ -17,8 +17,8 @@
         android:label="@string/title_wallet"
         tools:layout="@layout/fragment_wallet" >
         <action
-            android:id="@+id/action_navigation_wallet_to_addCardToWalletFragment"
-            app:destination="@id/addCardToWalletFragment"
+            android:id="@+id/action_navigation_wallet_to_addCustomCardFragment"
+            app:destination="@id/addCustomCardFragment"
             app:popUpTo="@id/navigation_wallet"
             app:popUpToInclusive="false" />
         <action
@@ -32,20 +32,20 @@
         android:label="@string/title_recommended"
         tools:layout="@layout/fragment_recommended"/>
     <fragment
-        android:id="@+id/addCardToWalletFragment"
-        android:name="com.example.android.pointmax.ui.add_card.AddCardToWalletFragment"
+        android:id="@+id/addCustomCardFragment"
+        android:name="com.example.android.pointmax.ui.add_card.AddCustomCardFragment"
         android:label="@string/title_Add_Card_To_Wallet"
-        tools:layout="@layout/fragment_add_card_to_wallet" >
+        tools:layout="@layout/fragment_add_custom_card" >
         <argument
             android:name="cardToEdit"
             app:argType="string"/>
         <action
-            android:id="@+id/action_addCardToWalletFragment_to_navigation_wallet"
+            android:id="@+id/action_addCustomCardFragment_to_navigation_wallet"
             app:destination="@id/navigation_wallet"
             app:popUpTo="@id/navigation_wallet"
             app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_addCardToWalletFragment_to_cardDetailsFragment"
+            android:id="@+id/action_addCustomCardFragment_to_cardDetailsFragment"
             app:destination="@id/cardDetailsFragment" />
     </fragment>
     <fragment
@@ -62,7 +62,7 @@
             app:destination="@id/navigation_wallet"
             app:popUpTo="@id/navigation_wallet" />
         <action
-            android:id="@+id/action_cardDetailsFragment_to_addCardToWalletFragment"
-            app:destination="@id/addCardToWalletFragment" />
+            android:id="@+id/action_cardDetailsFragment_to_addCustomCardFragment"
+            app:destination="@id/addCustomCardFragment" />
     </fragment>
 </navigation>

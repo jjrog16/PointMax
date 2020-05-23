@@ -70,9 +70,9 @@ class CardDetailsFragment : Fragment() {
         edit_button.setOnClickListener {
             val currentCard = currentCardText.text.toString()
             
-            // Once edit is pressed, go to AddCard and pass in the value of the current card
+            // Once edit is pressed, go to AddCustomCard and pass in the value of the current card
             val action =
-                CardDetailsFragmentDirections.actionCardDetailsFragmentToAddCardToWalletFragment(currentCard)
+                CardDetailsFragmentDirections.actionCardDetailsFragmentToAddCustomCardFragment(currentCard)
             findNavController().navigate(action)
             
         }
