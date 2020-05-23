@@ -1,4 +1,4 @@
-package com.example.android.pointmax.ui.add_card
+package com.example.android.pointmax.ui.add_custom_card
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
