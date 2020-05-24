@@ -1,13 +1,30 @@
 package com.example.android.pointmax.database
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
-@Entity(tableName = "card_table")
+@Entity
 data class Card(
-    @PrimaryKey
-    @ColumnInfo(name = "cardName")
-    var card: String
+    @PrimaryKey(autoGenerate = true)
+    var cardId: Long = 0L,
+    var cardName: String
 )
 
+@Entity
+data class Category(
+    @PrimaryKey(autoGenerate = true)
+    val categoryId: Long = 0L,
+    val cardCategoryId: Long,
+    var type: String = "General",
+    var earnRate: Double = 1.0,
+    var protection: Int,
+    var redeemValue: String
+)
+
+data class CreditCards(
+    @Embedded val card: Card,
+    @Relation(
+        parentColumn = "cardId",
+        entityColumn = "cardCategoryId"
+    )
+    val creditCards: List<Category>
+)

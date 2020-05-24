@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.amitshekhar.DebugDB
 import com.example.android.pointmax.ui.wallet.WalletFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         
         // Plant tree to enable Debugging with Timber
         Timber.plant(Timber.DebugTree())
+        
+        Timber.i(DebugDB.getAddressLog())
         
         // Find the bottomNavigation bar
         val navView: BottomNavigationView = findViewById(R.id.nav_view)

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -21,7 +22,70 @@ public abstract class CardRoomDatabase : RoomDatabase() {
         // same time.
         @Volatile
         private var INSTANCE: CardRoomDatabase? = null
-
+    
+//        // Migration from 1 to 2, Room 2.2.5
+//        val MIGRATION_1_2 = object : Migration(1, 2) {
+//            override fun migrate(database: SupportSQLiteDatabase) {
+//                database.execSQL("DROP TABLE card_table ")
+//                database.execSQL("""
+//                    CREATE TABLE Card (
+//                        cardId INTEGER PRIMARY KEY NOT NULL,
+//                        cardName TEXT NOT NULL
+//                    )
+//                    """.trimIndent())
+//                database.execSQL("""
+//                    CREATE TABLE Category(
+//                        categoryId INTEGER PRIMARY KEY NOT NULL,
+//                        cardCategoryId INTEGER,
+//                        type TEXT,
+//                        earnRate DOUBLE,
+//                        protection INTEGER,
+//                        redeemValue TEXT
+//                    )
+//                """.trimIndent())
+//            }
+//        }
+//
+//        val MIGRATION_2_3 = object : Migration(2,3) {
+//            override fun migrate(database: SupportSQLiteDatabase) {
+//                database.execSQL("DROP TABLE Card ")
+//                database.execSQL("""
+//                    CREATE TABLE Card (
+//                        cardId INTEGER 0 PRIMARY KEY NOT NULL,
+//                        cardName TEXT NOT NULL
+//                    )
+//                    """.trimIndent())
+//                database.execSQL("UPDATE Card SET cardId = 0 ")
+//            }
+//        }
+//
+//        val MIGRATION_3_4 = object : Migration(3,4) {
+//            override fun migrate(database: SupportSQLiteDatabase) {
+//                database.execSQL("DROP TABLE Card ")
+//                database.execSQL("DROP TABLE Category ")
+//                database.execSQL(
+//                    """
+//                    CREATE TABLE Card (
+//                        cardId INTEGER PRIMARY KEY NOT NULL,
+//                        cardName TEXT NOT NULL
+//                    )
+//                    """.trimIndent()
+//                )
+//                database.execSQL(
+//                    """
+//                    CREATE TABLE Category(
+//                        categoryId INTEGER PRIMARY KEY NOT NULL,
+//                        cardCategoryId INTEGER,
+//                        type TEXT,
+//                        earnRate DOUBLE,
+//                        protection INTEGER,
+//                        redeemValue TEXT
+//                    )
+//                """.trimIndent()
+//                )
+//            }
+//        }
+        
         fun getDatabase(
             context: Context,
             scope: CoroutineScope
@@ -59,9 +123,9 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 cardDao.deleteAll()
 
                 // Add sample words.
-                var card = Card("Petal Credit Card")
+                var card = Card(cardName = "Petal Credit Card")
                 cardDao.insert(card)
-                card = Card("Discover IT")
+                card = Card(cardName = "Discover IT")
                 cardDao.insert(card)
             }
         }

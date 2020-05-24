@@ -103,7 +103,7 @@ class AddCustomCardFragment : Fragment() {
                     
                     // Insert a new card
                     cardToBeEntered.let {
-                        val card = Card(it)
+                        val card = Card(cardName = it)
                         viewModel.insert(card)
                     }
     

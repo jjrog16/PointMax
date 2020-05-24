@@ -40,7 +40,7 @@ class CardAdapter(val onClickListener: OnClickListener) :
         }
         
         override fun areContentsTheSame(oldItem: Card, newItem: Card): Boolean {
-            return oldItem.card == newItem.card
+            return oldItem.cardName == newItem.cardName
         }
     }
     
