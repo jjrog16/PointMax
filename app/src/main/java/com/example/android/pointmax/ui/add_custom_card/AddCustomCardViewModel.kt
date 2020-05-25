@@ -5,10 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.database.CardRepository
-import com.example.android.pointmax.database.CardRoomDatabase
-import com.example.android.pointmax.database.CreditCards
+import com.example.android.pointmax.database.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,7 +18,7 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
     // - Repository is completely separated from the UI through the ViewModel.
     
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCards: LiveData<List<Card>>
+    val allCards: LiveData<List<CreditCards>>
     
     // Because we need only the name of the card passed as a variable, it is of type String
     private val _cardToEdit = MutableLiveData<String>()
@@ -44,6 +41,13 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
      */
     fun insert(card: Card) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(card)
+    }
+    
+    /**
+     * Launching a new coroutine to insert the data in a non-blocking way
+     */
+    fun insertCategory(category: Category) = viewModelScope.launch(Dispatchers.IO) {
+        repository.insertCategory(category)
     }
     
     /**

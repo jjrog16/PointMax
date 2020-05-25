@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
 import com.example.android.pointmax.database.Card
+import com.example.android.pointmax.database.CreditCards
 import kotlinx.android.synthetic.main.fragment_add_custom_card.*
 import timber.log.Timber
 

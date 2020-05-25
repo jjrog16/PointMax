@@ -13,11 +13,11 @@ data class Card(
 data class Category(
     @PrimaryKey(autoGenerate = true)
     val categoryId: Long = 0L,
-    val cardCategoryId: Long,
+    val cardCategoryId: Long = 0L,
     var type: String = "General",
     var earnRate: Double = 1.0,
-    var protection: Int,
-    var redeemValue: String
+    var protection: Int = 0,
+    var redeemValue: String = "Cash"
 )
 
 data class CreditCards(
@@ -26,5 +26,5 @@ data class CreditCards(
         parentColumn = "cardId",
         entityColumn = "cardCategoryId"
     )
-    val creditCards: List<Category>
+    val categories: List<Category>
 )

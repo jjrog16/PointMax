@@ -8,10 +8,13 @@ import androidx.room.*
 interface CardDao {
     @Transaction
     @Query("SELECT * from Card")
-    fun getCards(): LiveData<List<Card>>
+    fun getCards(): LiveData<List<CreditCards>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(card: Card)
+    
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertCategory(category: Category)
 
     @Query("DELETE FROM Card")
     suspend fun deleteAll()

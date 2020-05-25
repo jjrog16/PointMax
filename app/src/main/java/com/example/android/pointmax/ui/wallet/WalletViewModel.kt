@@ -18,7 +18,7 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     // - Repository is completely separated from the UI through the ViewModel.
     
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCards: LiveData<List<Card>>
+    val allCards: LiveData<List<CreditCards>>
     
     // Internally, we use a MutableLiveData to handle navigation to the selected cxa
     private val _navigateToSelectedCard = MutableLiveData<Card>()
