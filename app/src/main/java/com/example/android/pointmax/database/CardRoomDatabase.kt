@@ -4,13 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
 // Annotates class to be a Room Database with a table (entity) of the Card class
-@Database(entities = arrayOf(Card::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Card::class, Category::class), version = 1, exportSchema = false)
 public abstract class CardRoomDatabase : RoomDatabase() {
 
     abstract fun cardDao(): CardDao
@@ -34,7 +35,8 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     CardRoomDatabase::class.java,
                     "card_database"
-                ).addCallback(CardDatabaseCallback(scope)).build()
+                ).fallbackToDestructiveMigration()
+                    .addCallback(CardDatabaseCallback(scope)).build()
                 INSTANCE = instance
                 return instance
             }
@@ -58,9 +60,9 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 cardDao.deleteAll()
 
                 // Add sample cards.
-                var card = Card(cardName = "Petal Credit Card")
+                var card = Card(cardName = "Petal Credit Card", cardId = 1)
                 cardDao.insert(card)
-                var category = Category(cardCategoryId = card.cardId, type = "General", earnRate = 1.5, protection = 0, redeemValue = "cash")
+                var category = Category(categoryId = 1,cardCategoryId = card.cardId, type = "General", earnRate = 1.5, protection = 0, redeemValue = "cash")
                 cardDao.insertCategory(category)
 //                card = Card(cardName = "Discover IT")
 //                cardDao.insert(card)

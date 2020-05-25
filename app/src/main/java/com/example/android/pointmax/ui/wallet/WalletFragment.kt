@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.CardAdapter
 
 import com.example.android.pointmax.databinding.FragmentWalletBinding
+import timber.log.Timber
 
 class WalletFragment : Fragment() {
     /**
@@ -43,7 +44,8 @@ class WalletFragment : Fragment() {
         // Sets the adapter of the wallet_recyclerview RecyclerView with clickHandler lambda that
         // tells the viewModel when our card is clicked
         binding.walletRecyclerview.adapter = CardAdapter(CardAdapter.OnClickListener {
-            viewModel.displayCardDetails(it)
+            viewModel.displayCardDetails(it.card)
+            Timber.i("Credit Card: $it")
         })
     
         // Observe the navigateToSelectedCard LiveData and Navigate when it isn't null
