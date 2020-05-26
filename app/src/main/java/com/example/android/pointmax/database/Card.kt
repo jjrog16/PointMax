@@ -17,7 +17,7 @@ data class Category(
     var type: String = "General",
     var earnRate: Double = 1.0,
     var protection: Int = 0,
-    var redeemValue: String = "Cash"
+    var redeemValue: String = "cash"
 )
 
 data class CreditCards(

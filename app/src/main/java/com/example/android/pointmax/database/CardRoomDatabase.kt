@@ -64,8 +64,11 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 cardDao.insert(card)
                 var category = Category(categoryId = 1,cardCategoryId = card.cardId, type = "General", earnRate = 1.5, protection = 0, redeemValue = "cash")
                 cardDao.insertCategory(category)
-                card = Card(cardName = "Discover IT", cardId = 2)
+                
+                card = Card(cardName = "Generic Card", cardId = 2)
                 cardDao.insert(card)
+                category = Category(categoryId = 2, cardCategoryId = card.cardId)
+                cardDao.insertCategory(category)
             }
         }
     }
