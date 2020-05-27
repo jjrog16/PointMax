@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 
 import com.example.android.pointmax.CardAdapter
+import com.example.android.pointmax.database.Category
 
 import com.example.android.pointmax.databinding.FragmentWalletBinding
 import timber.log.Timber
@@ -45,7 +46,7 @@ class WalletFragment : Fragment() {
         // tells the viewModel when our card is clicked
         binding.walletRecyclerview.adapter = CardAdapter(CardAdapter.OnClickListener {
             viewModel.displayCardDetails(it.card)
-            Timber.i("Credit Card: $it")
+            Timber.i("${it.card.cardName}: $it")
         })
     
         // Observe the navigateToSelectedCard LiveData and Navigate when it isn't null
@@ -60,10 +61,5 @@ class WalletFragment : Fragment() {
             }
         })
         return binding.root
-    }
-    
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        
     }
 }

@@ -69,6 +69,15 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 cardDao.insert(card)
                 category = Category(categoryId = 2, cardCategoryId = card.cardId)
                 cardDao.insertCategory(category)
+    
+                card = Card(cardName = "American Express Gold", cardId = 3)
+                cardDao.insert(card)
+                category = Category(categoryId = 3, cardCategoryId = card.cardId, type = "Groceries", earnRate = 4.0, redeemValue = "points")
+                cardDao.insertCategory(category)
+                category = Category(categoryId = 4, cardCategoryId = card.cardId, type = "Restaurants", earnRate = 4.0, redeemValue = "points")
+                cardDao.insertCategory(category)
+                category = Category(categoryId = 5, cardCategoryId = card.cardId, type = "Airlines", earnRate = 3.0, redeemValue = "points")
+                cardDao.insertCategory(category)
             }
         }
     }

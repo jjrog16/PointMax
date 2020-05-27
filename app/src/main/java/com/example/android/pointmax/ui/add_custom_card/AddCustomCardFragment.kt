@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
 import com.example.android.pointmax.database.Card
+import com.example.android.pointmax.database.Category
 import com.example.android.pointmax.database.CreditCards
 import kotlinx.android.synthetic.main.fragment_add_custom_card.*
 import timber.log.Timber
@@ -67,6 +68,7 @@ class AddCustomCardFragment : Fragment() {
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
         
+        
         // Check if text is empty
         // If empty, do nothing
         // If there is text, then start coroutine to load into database
@@ -102,10 +104,15 @@ class AddCustomCardFragment : Fragment() {
                     // Take new entered input
                     cardToBeEntered = editCardNameView.text.toString().trim()
                     
+                    // TODO: Find a way to tie the new cardId to the new categories assigned to the card
+                    
                     // Insert a new card
                     cardToBeEntered.let {
                         val card = Card(cardName = it)
                         viewModel.insert(card)
+                        
+                        val category = Category()
+                        viewModel.insertCategory(category)
                     }
     
                     // Once value is added into the database, go back to the wallet

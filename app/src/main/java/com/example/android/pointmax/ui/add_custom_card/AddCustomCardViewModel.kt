@@ -20,6 +20,8 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
     // The external LiveData interface to the property is immutable, so only this class can modify
     val allCards: LiveData<List<CreditCards>>
     
+    //val getLatestCardId: Long
+    
     // Because we need only the name of the card passed as a variable, it is of type String
     private val _cardToEdit = MutableLiveData<String>()
     
@@ -34,6 +36,7 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
         allCards = repository.allCards
+        //getLatestCardId = repository.getLatestCardId
     }
     
     /**
