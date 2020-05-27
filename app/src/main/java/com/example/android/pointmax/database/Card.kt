@@ -4,8 +4,7 @@ import androidx.room.*
 
 @Entity
 data class Card(
-    @PrimaryKey(autoGenerate = true)
-    var cardId: Long = 0L,
+    @PrimaryKey
     var cardName: String
 )
 
@@ -13,7 +12,7 @@ data class Card(
 data class Category(
     @PrimaryKey(autoGenerate = true)
     val categoryId: Long = 0L,
-    val cardCategoryId: Long = 0L,
+    val cardCategoryId: String,
     var type: String = "General",
     var earnRate: Double = 1.0,
     var protection: Int = 0,
@@ -23,7 +22,7 @@ data class Category(
 data class CreditCards(
     @Embedded val card: Card,
     @Relation(
-        parentColumn = "cardId",
+        parentColumn = "cardName",
         entityColumn = "cardCategoryId"
     )
     val categories: List<Category>

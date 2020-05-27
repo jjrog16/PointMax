@@ -60,23 +60,23 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 cardDao.deleteAll()
 
                 // Add sample cards.
-                var card = Card(cardName = "Petal Credit Card", cardId = 1)
+                var card = Card(cardName = "Petal Credit Card")
                 cardDao.insert(card)
-                var category = Category(categoryId = 1,cardCategoryId = card.cardId, type = "General", earnRate = 1.5, protection = 0, redeemValue = "cash")
+                var category = Category(cardCategoryId = card.cardName, type = "General", earnRate = 1.5, protection = 0, redeemValue = "cash")
                 cardDao.insertCategory(category)
                 
-                card = Card(cardName = "Generic Card", cardId = 2)
+                card = Card(cardName = "Generic Card")
                 cardDao.insert(card)
-                category = Category(categoryId = 2, cardCategoryId = card.cardId)
+                category = Category(cardCategoryId = card.cardName)
                 cardDao.insertCategory(category)
     
-                card = Card(cardName = "American Express Gold", cardId = 3)
+                card = Card(cardName = "American Express Gold")
                 cardDao.insert(card)
-                category = Category(categoryId = 3, cardCategoryId = card.cardId, type = "Groceries", earnRate = 4.0, redeemValue = "points")
+                category = Category(cardCategoryId = card.cardName, type = "Groceries", earnRate = 4.0, redeemValue = "points")
                 cardDao.insertCategory(category)
-                category = Category(categoryId = 4, cardCategoryId = card.cardId, type = "Restaurants", earnRate = 4.0, redeemValue = "points")
+                category = Category(cardCategoryId = card.cardName, type = "Restaurants", earnRate = 4.0, redeemValue = "points")
                 cardDao.insertCategory(category)
-                category = Category(categoryId = 5, cardCategoryId = card.cardId, type = "Airlines", earnRate = 3.0, redeemValue = "points")
+                category = Category(cardCategoryId = card.cardName, type = "Airlines", earnRate = 3.0, redeemValue = "points")
                 cardDao.insertCategory(category)
             }
         }

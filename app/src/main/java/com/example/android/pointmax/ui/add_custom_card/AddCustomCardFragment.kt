@@ -111,7 +111,7 @@ class AddCustomCardFragment : Fragment() {
                         val card = Card(cardName = it)
                         viewModel.insert(card)
                         
-                        val category = Category()
+                        val category = Category(cardCategoryId = card.cardName)
                         viewModel.insertCategory(category)
                     }
     
