@@ -17,7 +17,7 @@ class CardDetailsViewModel(cardName: String, application: Application) : Android
     // - Repository is completely separated from the UI through the ViewModel.
     
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCards: LiveData<List<CreditCards>>
+    val allCreditCards: LiveData<List<CreditCards>>
     
     // Because we need only the name of the card passed as a variable, it is of type String
     private val _selectedCard = MutableLiveData<String>()
@@ -32,7 +32,7 @@ class CardDetailsViewModel(cardName: String, application: Application) : Android
         
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
-        allCards = repository.allCards
+        allCreditCards = repository.allCreditCards
     }
 
     private var _text = MutableLiveData<String>().apply {

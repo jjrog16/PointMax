@@ -18,7 +18,7 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     // - Repository is completely separated from the UI through the ViewModel.
     
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCards: LiveData<List<CreditCards>>
+    val allCreditCards: LiveData<List<CreditCards>>
     
     // Internally, we use a MutableLiveData to handle navigation to the selected cxa
     private val _navigateToSelectedCard = MutableLiveData<Card>()
@@ -51,6 +51,6 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     init {
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
-        allCards = repository.allCards
+        allCreditCards = repository.allCreditCards
     }
 }

@@ -10,6 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
@@ -67,6 +69,8 @@ class AddCustomCardFragment : Fragment() {
         // Create ViewModel with ViewModelFactory
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
+    
+    
         
         
         // Check if text is empty
@@ -87,24 +91,29 @@ class AddCustomCardFragment : Fragment() {
                     cardToBeEntered = editCardNameView.text.toString().trim()
                     
                     // Edit the card only if the card entered is not the same
-                    if (cardToBeEntered != cardToChange) {
+                    if (!checkIfCardInList(cardToBeEntered)) {
                         cardToBeEntered.let {
                             viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
+                            viewModel.editCategoryId(currentCardCategoryId = cardToChange, newCardCategoryId = cardToBeEntered)
                         }
-                    }
-                    
-                    // Go back to wallet after finishing the edit
-                    val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
-                    findNavController().navigate(action)
     
-                    // Hides keyboard after finishing input
-                    context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
+                        // Go back to wallet after finishing the edit
+                        val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
+                        findNavController().navigate(action)
+    
+                        // Hides keyboard after finishing input
+                        context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
+                    } else {
+                        Toast.makeText(
+                            context,
+                            getString(R.string.card_already_exists),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
                 else -> {
                     // Take new entered input
                     cardToBeEntered = editCardNameView.text.toString().trim()
-                    
-                    // TODO: Find a way to tie the new cardId to the new categories assigned to the card
                     
                     // Insert a new card
                     cardToBeEntered.let {
@@ -132,6 +141,21 @@ class AddCustomCardFragment : Fragment() {
     private fun hideKeyboard(context: Context, editText: EditText) {
         val imm: InputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(editText.windowToken,0)
+    }
+    
+    fun checkIfCardInList(cardToCheck: String): Boolean {
+        var isCardInList: Boolean = false
+        viewModel.allCards.observe(viewLifecycleOwner, Observer {
+            isCardInList = it.contains(Card(cardToCheck))
+            Timber.i("Is card in list?: ${it.contains(Card(cardToCheck))}")
+        })
+        return isCardInList
+    }
+    
+    //TODO: Get all types from a card and present them as edit values
+    //TODO: Tie the edit values and the new name value together to update the database
+    fun getCategoryTypeForEnteredCard(currentCard: String){
+    
     }
 }
 

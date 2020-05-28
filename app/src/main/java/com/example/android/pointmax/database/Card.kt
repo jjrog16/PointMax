@@ -8,12 +8,10 @@ data class Card(
     var cardName: String
 )
 
-@Entity
+@Entity(primaryKeys = ["type", "cardCategoryId"])
 data class Category(
-    @PrimaryKey(autoGenerate = true)
-    val categoryId: Long = 0L,
-    val cardCategoryId: String,
     var type: String = "General",
+    val cardCategoryId: String,
     var earnRate: Double = 1.0,
     var protection: Int = 0,
     var redeemValue: String = "cash"
