@@ -69,9 +69,6 @@ class AddCustomCardFragment : Fragment() {
         // Create ViewModel with ViewModelFactory
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
-    
-    
-        
         
         // Check if text is empty
         // If empty, do nothing
@@ -115,13 +112,21 @@ class AddCustomCardFragment : Fragment() {
                     // Take new entered input
                     cardToBeEntered = editCardNameView.text.toString().trim()
                     
-                    // Insert a new card
-                    cardToBeEntered.let {
-                        val card = Card(cardName = it)
-                        viewModel.insert(card)
-                        
-                        val category = Category(cardCategoryId = card.cardName)
-                        viewModel.insertCategory(category)
+                    if(!checkIfCardInList(cardToBeEntered)) {
+                        // Insert a new card
+                        cardToBeEntered.let {
+                            val card = Card(cardName = it)
+                            viewModel.insert(card)
+        
+                            val category = Category(cardCategoryId = card.cardName)
+                            viewModel.insertCategory(category)
+                        }
+                    } else {
+                        Toast.makeText(
+                            context,
+                            getString(R.string.card_already_exists),
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
     
                     // Once value is added into the database, go back to the wallet
@@ -144,6 +149,8 @@ class AddCustomCardFragment : Fragment() {
     }
     
     fun checkIfCardInList(cardToCheck: String): Boolean {
+        //TODO: Check categories in addition to card name
+        
         var isCardInList: Boolean = false
         viewModel.allCards.observe(viewLifecycleOwner, Observer {
             isCardInList = it.contains(Card(cardToCheck))
@@ -154,8 +161,8 @@ class AddCustomCardFragment : Fragment() {
     
     //TODO: Get all types from a card and present them as edit values
     //TODO: Tie the edit values and the new name value together to update the database
-    fun getCategoryTypeForEnteredCard(currentCard: String){
-    
-    }
+//    fun getCategoryTypeForEnteredCard(currentCard: String){
+//
+//    }
 }
 

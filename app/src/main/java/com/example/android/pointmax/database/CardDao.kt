@@ -13,7 +13,7 @@ interface CardDao {
     @Query("SELECT * from Card")
     fun getCards(): LiveData<List<Card>>
     
-    @Query("SELECT type FROM Category WHERE cardCategoryId = :selectedCard")
+    @Query("SELECT * FROM Category WHERE cardCategoryId = :selectedCard")
     fun getCategories(selectedCard: String): LiveData<List<Category>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
