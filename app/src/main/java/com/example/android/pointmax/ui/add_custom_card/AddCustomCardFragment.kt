@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -42,7 +43,7 @@ class AddCustomCardFragment : Fragment() {
         val application = requireNotNull(activity).application
         
         // Necessary to create Category EditText View. Allows for inflating
-        val layoutInflater: LayoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutInflater: LayoutInflater = layoutInflater
         val parent: ViewGroup = insert_point
 
         
