@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.add_custom_card.AddCustomCardFragment">
 
-
     <EditText
         android:id="@+id/new_card_name"
         android:layout_width="wrap_content"
@@ -18,14 +17,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:inputType="textPersonName" />
-    <Button
-        android:id="@+id/add_card_done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/new_card_name"
+
+    <LinearLayout
+        android:id="@+id/host_linear_layout"
+        android:layout_width="408dp"
+        android:layout_height="299dp"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="@string/add_card_done"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/add_card_done"
+        app:layout_constraintTop_toBottomOf="@id/new_card_name"
+        android:layout_margin="16dp">
+        <ScrollView
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <LinearLayout
+                android:id="@+id/insert_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="parent"/>
+        </ScrollView>
+    </LinearLayout>
+        <Button
+            android:id="@+id/add_next_category"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Add"
+            app:layout_constraintTop_toBottomOf="@id/host_linear_layout"
+            app:layout_constraintStart_toStartOf="@id/host_linear_layout"
+            app:layout_constraintEnd_toEndOf="@id/host_linear_layout" />
+        <Button
+            android:id="@+id/add_card_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/host_linear_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/add_card_done" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

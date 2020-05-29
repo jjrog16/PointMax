@@ -10,14 +10,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
 import com.example.android.pointmax.database.Card
 import com.example.android.pointmax.database.Category
-import com.example.android.pointmax.database.CreditCards
 import kotlinx.android.synthetic.main.fragment_add_custom_card.*
 import timber.log.Timber
 
@@ -43,8 +41,19 @@ class AddCustomCardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val application = requireNotNull(activity).application
         
+        // Necessary to create Category EditText View. Allows for inflating
+        val layoutInflater: LayoutInflater = context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val parent: ViewGroup = insert_point
+
+        
+        // Add the view into the screen when pressed
+        add_next_category.setOnClickListener {
+            layoutInflater.inflate(R.layout.category_views,parent)
+        }
+        
         // EditText field
         editCardNameView = new_card_name
+        
         
         // If we are coming from another card, set this to true
         var isValuePassed = false
