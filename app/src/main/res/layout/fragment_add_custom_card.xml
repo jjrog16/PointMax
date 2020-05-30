@@ -33,9 +33,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <LinearLayout
+                android:id="@+id/layout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible">
                 <Spinner
                     android:id="@+id/type1"
                     android:layout_width="match_parent"
@@ -47,9 +49,11 @@
                     android:hint="@string/earn_rate"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/layout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
                 <Spinner
                     android:id="@+id/type2"
                     android:layout_width="wrap_content"
@@ -62,9 +66,11 @@
                     android:hint="@string/earn_rate"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/layout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
                 <Spinner
                     android:id="@+id/type3"
                     android:layout_width="wrap_content"
@@ -77,9 +83,11 @@
                     android:hint="@string/earn_rate"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/layout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
                 <Spinner
                     android:id="@+id/type4"
                     android:layout_width="wrap_content"
@@ -92,9 +100,11 @@
                     android:hint="@string/earn_rate"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/layout5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
                 <Spinner
                     android:id="@+id/type5"
                     android:layout_width="wrap_content"

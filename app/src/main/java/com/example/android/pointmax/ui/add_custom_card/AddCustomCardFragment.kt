@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -28,8 +29,16 @@ class AddCustomCardFragment : Fragment() {
     
     private lateinit var viewModel: AddCustomCardViewModel
     private lateinit var editCardNameView: EditText
-    private lateinit var cardToBeEntered: String // Holds the entered value of EditText
     private var isCardInList: Boolean = false // Holds if the card is currently in the database
+    private lateinit var categoryViews: Array<LinearLayout>
+    
+    // Since we always start with the General category, always start at 1 and skip index 0
+    var currentCategoryView = 1
+    
+    // Since all types will be defaulted to having a value of whatever the
+    // "general" earn rate is, show categories that have values greater than the "general"
+    // earn rate.
+    var uniqueCategory = 0
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +54,9 @@ class AddCustomCardFragment : Fragment() {
         // EditText field
         editCardNameView = new_card_name
     
+        // All Category views that include Spinner and EditText
+        categoryViews = arrayOf(layout1,layout2,layout3,layout4,layout5)
+        
         // Card value passed in through Fragment as a string
         val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
         
@@ -59,12 +71,42 @@ class AddCustomCardFragment : Fragment() {
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
         
+        viewModel.allCards.observe(viewLifecycleOwner, Observer {
+             if (isComingFromAnotherCard) {
+                 for (card in it) {
+                     when {
+                         (card.general < card.airlines) -> {
+                             // Show airline
+                             uniqueCategory++
+                         }
+                         (card.general < card.groceries) -> {
+                             // Show groceries
+                             uniqueCategory++
+                         }
+                         (card.general < card.restaurant) -> {
+                             // Show restaurant
+                             uniqueCategory++
+                         }
+                         (card.general < card.gas) -> {
+                             // Show gas
+                             uniqueCategory++
+                         }
+                         (card.general < card.travel) -> {
+                             // Show travel
+                             uniqueCategory++
+                         }
+                     }
+                 }
+             }
+        })
+        
+        
         // Check if text is empty
         // If empty, do nothing
         // If there is text, then start coroutine to load into database
         add_card_done.setOnClickListener {
             // Take new entered input
-            cardToBeEntered = editCardNameView.text.toString().trim()
+            val cardToBeEntered = editCardNameView.text.toString().trim()
             
             viewModel.allCards.observe(viewLifecycleOwner, Observer {
                 if (it != null) {
@@ -128,6 +170,12 @@ class AddCustomCardFragment : Fragment() {
                 }
             })
         }
+    
+        // Add category option so user can add categories to card
+        add_next_category.setOnClickListener {
+            addCategoryViewsToScreen()
+        }
+        
     }
     
     // Called after the operation is completed in order to hide the keyboard when EditText field
@@ -150,17 +198,14 @@ class AddCustomCardFragment : Fragment() {
         return isValuePassed
     }
     
-//    // Show visibility to the EditText views
-//    fun addNewCategories(){
-//
-//        // Add the view into the screen when pressed
-//        add_next_category.setOnClickListener {
-//
-//        }
-//    }
-//
-//    fun populateSpinner(){
-//        var arraySpinner = arrayOf("General", "Groceries", "Restaurant", "Gas", "Airlines", "Travel")
-//    }
+    // Populates screen with categories and earn rate
+    private fun addCategoryViewsToScreen(){
+        if (currentCategoryView >= categoryViews.size) {
+            add_next_category.visibility = View.INVISIBLE
+        } else {
+            categoryViews[currentCategoryView].visibility = View.VISIBLE
+            currentCategoryView++
+        }
+    }
 }
 
