@@ -28,6 +28,9 @@ class AddCustomCardFragment : Fragment() {
     
     private lateinit var viewModel: AddCustomCardViewModel
     private lateinit var editCardNameView: EditText
+    // Holds the entered value of EditText
+    private lateinit var cardToBeEntered: String
+    private var isCardInList: Boolean = false
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,20 +42,15 @@ class AddCustomCardFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val application = requireNotNull(activity).application
-        
+    
         // EditText field
         editCardNameView = new_card_name
-        
+    
         // Card value passed in through Fragment as a string
         val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
         
-        // Holds the entered value of EditText
-        var cardToBeEntered: String
-        
         // Set the text of the EditText view only if coming from another card
         val isComingFromAnotherCard = setDefaultEditText(cardToChange)
-        
-        
         
         // The ViewModelFactory that takes the card name string and creates a ViewModel
         // with the card name string
@@ -66,73 +64,70 @@ class AddCustomCardFragment : Fragment() {
         // If empty, do nothing
         // If there is text, then start coroutine to load into database
         add_card_done.setOnClickListener {
-            when {
-                TextUtils.isEmpty(editCardNameView.text) or
-                    editCardNameView.text.toString().trim().matches("\\s*".toRegex()) -> {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.empty_not_saved),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                // Sets the text of the EditText view only if coming from another card
-                isComingFromAnotherCard -> {
-                    // Take new entered input
-                    cardToBeEntered = editCardNameView.text.toString().trim()
-    
-                    val isCardToBeEnteredInDB = checkIfCardInList(cardToBeEntered)
-                    Timber.i("Is the $cardToBeEntered in the db? -> $isCardToBeEnteredInDB")
-                    
-                    // Edit the card only if the card entered is not the same
-                    if (!isCardToBeEnteredInDB) {
-                        cardToBeEntered.let {
-                            viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
+            // Take new entered input
+            cardToBeEntered = editCardNameView.text.toString().trim()
+            
+            viewModel.allCards.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    isCardInList = it.contains(Card(cardToBeEntered))
+                    when {
+                        // Case when nothing is in EditText
+                        TextUtils.isEmpty(editCardNameView.text) or
+                            editCardNameView.text.toString().trim().matches("\\s*".toRegex()) -> {
+                            Toast.makeText(
+                                context,
+                                getString(R.string.empty_not_saved),
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
-    
-                        // Go back to wallet after finishing the edit
-                        val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
-                        findNavController().navigate(action)
-    
-                        // Hides keyboard after finishing input
-                        context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
-                    } else {
-                        Toast.makeText(
-                            context,
-                            getString(R.string.card_already_exists),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        // Sets the text of the EditText view only if coming from another card
+                        isComingFromAnotherCard -> {
+                            // Edit the card only if the card entered is not the same
+                            if (!isCardInList) {
+                                cardToBeEntered.let {
+                                    viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
+                                }
+                                // Go back to wallet after finishing the edit
+                                val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
+                                findNavController().navigate(action)
+                
+                                // Hides keyboard after finishing input
+                                context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
+                            } else {
+                                Toast.makeText(
+                                    context,
+                                    getString(R.string.card_already_exists),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                        else -> {
+                            // Adding a new card into the Wallet
+                            if(!isCardInList) {
+                                // Insert a new card
+                                cardToBeEntered.let {
+                                    val card = Card(it)
+                                    viewModel.insert(card)
+                                }
+                            } else if (isCardInList) {
+                                Toast.makeText(
+                                    context,
+                                    getString(R.string.card_already_exists),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+            
+                            // Once value is added into the database, go back to the wallet
+                            val action =
+                                AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
+                            findNavController().navigate(action)
+            
+                            // Hides keyboard after finishing input
+                            context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
+                        }
                     }
                 }
-                else -> {
-                    // Take new entered input
-                    cardToBeEntered = editCardNameView.text.toString().trim()
-    
-                    val isCardToBeEnteredInDB = checkIfCardInList(cardToBeEntered)
-                    Timber.i("Is the $cardToBeEntered in the db? -> $isCardToBeEnteredInDB")
-                    
-                    if(!isCardToBeEnteredInDB) {
-                        // Insert a new card
-                        cardToBeEntered.let {
-                            val card = Card(it)
-                            viewModel.insert(card)
-                        }
-                    } else {
-                        Toast.makeText(
-                            context,
-                            getString(R.string.card_already_exists),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-    
-                    // Once value is added into the database, go back to the wallet
-                    val action =
-                        AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
-                    findNavController().navigate(action)
-                    
-                    // Hides keyboard after finishing input
-                    context?.let { it1 -> hideKeyboard(it1,editCardNameView) }
-                }
-            }
+            })
         }
     }
     
@@ -143,23 +138,12 @@ class AddCustomCardFragment : Fragment() {
         imm.hideSoftInputFromWindow(editText.windowToken,0)
     }
     
-    
-    private fun checkIfCardInList(cardToCheck: String): Boolean {
-        
-        var isCardInList = false
-        viewModel.allCards.observe(viewLifecycleOwner, Observer {
-            isCardInList = it.contains(Card(cardName = cardToCheck))
-            Timber.i("All Cards: $it")
-            Timber.i("Is $cardToCheck in $it? -> ${it.contains(Card(cardToCheck))}")
-        })
-        return isCardInList
-    }
-    
+    // If the user selects to add a new card, the default value passed is an empty string,
+    // so only have the text set if the user is coming from a card
     private fun setDefaultEditText(cardToChange: String): Boolean {
+        // Are we coming from another card?
         var isValuePassed = false
         
-        // If the user selects to add a new card, the default value passed is an empty string,
-        // so only have the text set if the user is coming from a card
         if (!cardToChange.matches("\\s*".toRegex())) {
             isValuePassed = true
             editCardNameView.setText(cardToChange)
