@@ -56,7 +56,7 @@ class CardDetailsFragment : Fragment() {
         currentCardText = current_card
         
         delete_button.setOnClickListener {
-            val currentCard = currentCardText.text.toString()
+            val currentCard = currentCardText.text.toString().toUpperCase()
             currentCard.let {
                 viewModel.deleteByName(it)
             }
