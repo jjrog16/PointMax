@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.example.android.pointmax.database.Card
 import com.example.android.pointmax.database.CardRepository
 import com.example.android.pointmax.database.CardRoomDatabase
-import com.example.android.pointmax.database.CreditCards
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,7 +16,7 @@ class CardDetailsViewModel(cardName: String, application: Application) : Android
     // - Repository is completely separated from the UI through the ViewModel.
     
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCreditCards: LiveData<List<CreditCards>>
+    val allCards: LiveData<List<Card>>
     
     // Because we need only the name of the card passed as a variable, it is of type String
     private val _selectedCard = MutableLiveData<String>()
@@ -32,7 +31,7 @@ class CardDetailsViewModel(cardName: String, application: Application) : Android
         
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
-        allCreditCards = repository.allCreditCards
+        allCards = repository.allCards
     }
 
     private var _text = MutableLiveData<String>().apply {

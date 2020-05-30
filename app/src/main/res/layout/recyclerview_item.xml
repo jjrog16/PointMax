@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="creditCard"
-            type="com.example.android.pointmax.database.CreditCards" />
+            name="cardRecyclerViewItem"
+            type="com.example.android.pointmax.database.Card" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
                 style="@style/card_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{creditCard.card.cardName.toString()}"
+                android:text="@{cardRecyclerViewItem.cardName.toString()}"
                 android:background="@android:color/holo_orange_light"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

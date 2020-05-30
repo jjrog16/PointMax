@@ -70,9 +70,6 @@ class CardDetailsFragment : Fragment() {
         edit_button.setOnClickListener {
             val currentCard = currentCardText.text.toString()
             
-            //TODO: Pass current database names so that a user cannot edit a name to another card's
-            // name
-            
             // Once edit is pressed, go to AddCustomCard and pass in the value of the current card
             val action =
                 CardDetailsFragmentDirections.actionCardDetailsFragmentToAddCustomCardFragment(currentCard)

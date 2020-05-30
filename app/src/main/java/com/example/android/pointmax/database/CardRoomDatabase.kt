@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 
 // Annotates class to be a Room Database with a table (entity) of the Card class
-@Database(entities = arrayOf(Card::class, Category::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Card::class), version = 1, exportSchema = false)
 public abstract class CardRoomDatabase : RoomDatabase() {
 
     abstract fun cardDao(): CardDao
@@ -62,22 +62,13 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 // Add sample cards.
                 var card = Card(cardName = "Petal Credit Card")
                 cardDao.insert(card)
-                var category = Category(cardCategoryId = card.cardName, type = "General", earnRate = 1.5, protection = 0, redeemValue = "cash")
-                cardDao.insertCategory(category)
                 
                 card = Card(cardName = "Generic Card")
                 cardDao.insert(card)
-                category = Category(cardCategoryId = card.cardName)
-                cardDao.insertCategory(category)
-    
+                
                 card = Card(cardName = "American Express Gold")
                 cardDao.insert(card)
-                category = Category(cardCategoryId = card.cardName, type = "Groceries", earnRate = 4.0, redeemValue = "points")
-                cardDao.insertCategory(category)
-                category = Category(cardCategoryId = card.cardName, type = "Restaurants", earnRate = 4.0, redeemValue = "points")
-                cardDao.insertCategory(category)
-                category = Category(cardCategoryId = card.cardName, type = "Airlines", earnRate = 3.0, redeemValue = "points")
-                cardDao.insertCategory(category)
+                
             }
         }
     }

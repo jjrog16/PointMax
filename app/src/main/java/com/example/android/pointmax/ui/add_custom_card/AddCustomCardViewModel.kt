@@ -17,14 +17,9 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
     //   the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
     
-    // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCreditCards: LiveData<List<CreditCards>>
-    
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
     val allCards: LiveData<List<Card>>
-    
-    
     
     // Because we need only the name of the card passed as a variable, it is of type String
     private val _cardToEdit = MutableLiveData<String>()
@@ -40,7 +35,6 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
         allCards = repository.allCards
-        allCreditCards = repository.allCreditCards
     }
     
     /**
@@ -50,12 +44,6 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
         repository.insert(card)
     }
     
-    /**
-     * Launching a new coroutine to insert the data in a non-blocking way
-     */
-    fun insertCategory(category: Category) = viewModelScope.launch(Dispatchers.IO) {
-        repository.insertCategory(category)
-    }
     
     /**
      * Launching a new coroutine to update the data in a non-blocking way
@@ -64,10 +52,4 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
         repository.editName(newName, oldName)
     }
     
-    /**
-     * Launching a new coroutine to update the data in a non-blocking way
-     */
-    fun editCategoryId(newCardCategoryId: String, currentCardCategoryId: String) = viewModelScope.launch(Dispatchers.IO) {
-        repository.editCategoryId(newCardCategoryId, currentCardCategoryId)
-    }
 }

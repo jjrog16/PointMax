@@ -5,7 +5,6 @@ import androidx.lifecycle.*
 import com.example.android.pointmax.database.Card
 import com.example.android.pointmax.database.CardRepository
 import com.example.android.pointmax.database.CardRoomDatabase
-import com.example.android.pointmax.database.CreditCards
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,7 +17,7 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     // - Repository is completely separated from the UI through the ViewModel.
     
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val allCreditCards: LiveData<List<CreditCards>>
+    val allCards: LiveData<List<Card>>
     
     // Internally, we use a MutableLiveData to handle navigation to the selected cxa
     private val _navigateToSelectedCard = MutableLiveData<Card>()
@@ -51,6 +50,6 @@ class WalletViewModel(application: Application) : AndroidViewModel(application) 
     init {
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
-        allCreditCards = repository.allCreditCards
+        allCards = repository.allCards
     }
 }

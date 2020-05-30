@@ -23,7 +23,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:listData="@{viewModel.allCreditCards}"/>
+                app:listData="@{viewModel.allCards}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

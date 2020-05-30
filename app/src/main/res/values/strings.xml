@@ -12,4 +12,5 @@
     <string name="don_t_see_your_card_add_your_own">Don\'t see your card? Add your own!</string>
     <string name="add_a_card">Add a Card</string>
     <string name="card_already_exists">Card already exists</string>
+    <string name="earn_rate">Earn Rate</string>
 </resources>

@@ -9,14 +9,12 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
 import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.database.Category
 import kotlinx.android.synthetic.main.fragment_add_custom_card.*
 import timber.log.Timber
 
@@ -42,35 +40,19 @@ class AddCustomCardFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val application = requireNotNull(activity).application
         
-        // Necessary to create Category EditText View. Allows for inflating
-        val layoutInflater: LayoutInflater = layoutInflater
-        val parent: ViewGroup = insert_point
-
-        
-        // Add the view into the screen when pressed
-        add_next_category.setOnClickListener {
-            layoutInflater.inflate(R.layout.category_views,parent)
-        }
-        
         // EditText field
         editCardNameView = new_card_name
         
-        
-        // If we are coming from another card, set this to true
-        var isValuePassed = false
-        
         // Card value passed in through Fragment as a string
         val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
-    
+        
         // Holds the entered value of EditText
         var cardToBeEntered: String
         
-        // If the user selects to add a new card, the default value passed is an empty string,
-        // so only have the text set if the user is coming from a card
-        if (!cardToChange.matches("\\s*".toRegex())) {
-            isValuePassed = true
-            editCardNameView.setText(cardToChange)
-        }
+        // Set the text of the EditText view only if coming from another card
+        val isComingFromAnotherCard = setDefaultEditText(cardToChange)
+        
+        
         
         // The ViewModelFactory that takes the card name string and creates a ViewModel
         // with the card name string
@@ -93,15 +75,18 @@ class AddCustomCardFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                isValuePassed -> {
+                // Sets the text of the EditText view only if coming from another card
+                isComingFromAnotherCard -> {
                     // Take new entered input
                     cardToBeEntered = editCardNameView.text.toString().trim()
+    
+                    val isCardToBeEnteredInDB = checkIfCardInList(cardToBeEntered)
+                    Timber.i("Is the $cardToBeEntered in the db? -> $isCardToBeEnteredInDB")
                     
                     // Edit the card only if the card entered is not the same
-                    if (!checkIfCardInList(cardToBeEntered)) {
+                    if (!isCardToBeEnteredInDB) {
                         cardToBeEntered.let {
                             viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
-                            viewModel.editCategoryId(currentCardCategoryId = cardToChange, newCardCategoryId = cardToBeEntered)
                         }
     
                         // Go back to wallet after finishing the edit
@@ -121,15 +106,15 @@ class AddCustomCardFragment : Fragment() {
                 else -> {
                     // Take new entered input
                     cardToBeEntered = editCardNameView.text.toString().trim()
+    
+                    val isCardToBeEnteredInDB = checkIfCardInList(cardToBeEntered)
+                    Timber.i("Is the $cardToBeEntered in the db? -> $isCardToBeEnteredInDB")
                     
-                    if(!checkIfCardInList(cardToBeEntered)) {
+                    if(!isCardToBeEnteredInDB) {
                         // Insert a new card
                         cardToBeEntered.let {
-                            val card = Card(cardName = it)
+                            val card = Card(it)
                             viewModel.insert(card)
-        
-                            val category = Category(cardCategoryId = card.cardName)
-                            viewModel.insertCategory(category)
                         }
                     } else {
                         Toast.makeText(
@@ -158,21 +143,41 @@ class AddCustomCardFragment : Fragment() {
         imm.hideSoftInputFromWindow(editText.windowToken,0)
     }
     
-    fun checkIfCardInList(cardToCheck: String): Boolean {
-        //TODO: Check categories in addition to card name
+    
+    private fun checkIfCardInList(cardToCheck: String): Boolean {
         
-        var isCardInList: Boolean = false
+        var isCardInList = false
         viewModel.allCards.observe(viewLifecycleOwner, Observer {
-            isCardInList = it.contains(Card(cardToCheck))
-            Timber.i("Is card in list?: ${it.contains(Card(cardToCheck))}")
+            isCardInList = it.contains(Card(cardName = cardToCheck))
+            Timber.i("All Cards: $it")
+            Timber.i("Is $cardToCheck in $it? -> ${it.contains(Card(cardToCheck))}")
         })
         return isCardInList
     }
     
-    //TODO: Get all types from a card and present them as edit values
-    //TODO: Tie the edit values and the new name value together to update the database
-//    fun getCategoryTypeForEnteredCard(currentCard: String){
+    private fun setDefaultEditText(cardToChange: String): Boolean {
+        var isValuePassed = false
+        
+        // If the user selects to add a new card, the default value passed is an empty string,
+        // so only have the text set if the user is coming from a card
+        if (!cardToChange.matches("\\s*".toRegex())) {
+            isValuePassed = true
+            editCardNameView.setText(cardToChange)
+        }
+        return isValuePassed
+    }
+    
+//    // Show visibility to the EditText views
+//    fun addNewCategories(){
 //
+//        // Add the view into the screen when pressed
+//        add_next_category.setOnClickListener {
+//
+//        }
+//    }
+//
+//    fun populateSpinner(){
+//        var arraySpinner = arrayOf("General", "Groceries", "Restaurant", "Gas", "Airlines", "Travel")
 //    }
 }
 
