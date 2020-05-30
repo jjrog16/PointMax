@@ -28,9 +28,8 @@ class AddCustomCardFragment : Fragment() {
     
     private lateinit var viewModel: AddCustomCardViewModel
     private lateinit var editCardNameView: EditText
-    // Holds the entered value of EditText
-    private lateinit var cardToBeEntered: String
-    private var isCardInList: Boolean = false
+    private lateinit var cardToBeEntered: String // Holds the entered value of EditText
+    private var isCardInList: Boolean = false // Holds if the card is currently in the database
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
