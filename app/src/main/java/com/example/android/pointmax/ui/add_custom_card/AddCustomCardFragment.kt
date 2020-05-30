@@ -29,16 +29,14 @@ class AddCustomCardFragment : Fragment() {
     
     private lateinit var viewModel: AddCustomCardViewModel
     private lateinit var editCardNameView: EditText
+//    private lateinit var generalEarn: EditText
+//    private lateinit var airlinesEarn: EditText
+//    private lateinit var restaurantsEarn: EditText
+//    private lateinit var groceriesEarn: EditText
+//    private lateinit var gasEarn: EditText
+//    private lateinit var travelEarn: EditText
     private var isCardInList: Boolean = false // Holds if the card is currently in the database
-    private lateinit var categoryViews: Array<LinearLayout>
-    
-    // Since we always start with the General category, always start at 1 and skip index 0
-    var currentCategoryView = 1
-    
-    // Since all types will be defaulted to having a value of whatever the
-    // "general" earn rate is, show categories that have values greater than the "general"
-    // earn rate.
-    var uniqueCategory = 0
+    private lateinit var cardBeforeBeingEntered: String
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,11 +52,10 @@ class AddCustomCardFragment : Fragment() {
         // EditText field
         editCardNameView = new_card_name
     
-        // All Category views that include Spinner and EditText
-        categoryViews = arrayOf(layout1,layout2,layout3,layout4,layout5)
-        
+    
         // Card value passed in through Fragment as a string
         val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
+        
         
         // Set the text of the EditText view only if coming from another card
         val isComingFromAnotherCard = setDefaultEditText(cardToChange)
@@ -71,35 +68,25 @@ class AddCustomCardFragment : Fragment() {
         viewModel =
             ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
         
-        viewModel.allCards.observe(viewLifecycleOwner, Observer {
-             if (isComingFromAnotherCard) {
-                 for (card in it) {
-                     when {
-                         (card.general < card.airlines) -> {
-                             // Show airline
-                             uniqueCategory++
-                         }
-                         (card.general < card.groceries) -> {
-                             // Show groceries
-                             uniqueCategory++
-                         }
-                         (card.general < card.restaurant) -> {
-                             // Show restaurant
-                             uniqueCategory++
-                         }
-                         (card.general < card.gas) -> {
-                             // Show gas
-                             uniqueCategory++
-                         }
-                         (card.general < card.travel) -> {
-                             // Show travel
-                             uniqueCategory++
-                         }
+         viewModel.allCards.observe(viewLifecycleOwner, Observer {
+             if (it != null) {
+                 for (card in it){
+                     if (card.cardName == cardBeforeBeingEntered) {
+                         generalEarn.setText(card.general.toString())
+                         airlinesEarn.setText(card.airlines.toString())
+                         restaurantsEarn.setText(card.restaurant.toString())
+                         travelEarn.setText(card.travel.toString())
+                         groceriesEarn.setText(card.groceries.toString())
+                         gasEarn.setText(card.gas.toString())
                      }
                  }
+                
+                 // Add category option so user can add categories to card
+                 add_next_category.setOnClickListener {
+                     Toast.makeText(context, "Add button pressed", Toast.LENGTH_SHORT).show()
+                 }
              }
-        })
-        
+         })
         
         // Check if text is empty
         // If empty, do nothing
@@ -127,6 +114,7 @@ class AddCustomCardFragment : Fragment() {
                             if (!isCardInList) {
                                 cardToBeEntered.let {
                                     viewModel.edit(oldName = cardToChange, newName = cardToBeEntered.toUpperCase())
+                                    
                                 }
                                 // Go back to wallet after finishing the edit
                                 val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
@@ -170,12 +158,6 @@ class AddCustomCardFragment : Fragment() {
                 }
             })
         }
-    
-        // Add category option so user can add categories to card
-        add_next_category.setOnClickListener {
-            addCategoryViewsToScreen()
-        }
-        
     }
     
     // Called after the operation is completed in order to hide the keyboard when EditText field
@@ -194,18 +176,9 @@ class AddCustomCardFragment : Fragment() {
         if (!cardToChange.matches("\\s*".toRegex())) {
             isValuePassed = true
             editCardNameView.setText(cardToChange)
+            cardBeforeBeingEntered = editCardNameView.text.toString().trim().toUpperCase()
         }
         return isValuePassed
-    }
-    
-    // Populates screen with categories and earn rate
-    private fun addCategoryViewsToScreen(){
-        if (currentCategoryView >= categoryViews.size) {
-            add_next_category.visibility = View.INVISIBLE
-        } else {
-            categoryViews[currentCategoryView].visibility = View.VISIBLE
-            currentCategoryView++
-        }
     }
 }
 

@@ -38,83 +38,119 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="visible">
-                <Spinner
-                    android:id="@+id/type1"
+                <TextView
+                    android:id="@+id/general"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="General:"
+                    android:layout_margin="16dp"/>
                 <EditText
-                    android:id="@+id/earn1"
+                    android:id="@+id/generalEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"/>
+                    android:hint="@string/earn_rate"
+                    android:layout_margin="16dp"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-                <Spinner
-                    android:id="@+id/type2"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/groceries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Groceries:"
+                    android:layout_margin="16dp"
                     />
                 <EditText
-                    android:id="@+id/earn2"
+                    android:id="@+id/groceriesEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"/>
+                    android:hint="@string/earn_rate"
+                    android:layout_margin="16dp"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-                <Spinner
-                    android:id="@+id/type3"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/restaurants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Restaurants:"
+                    android:layout_margin="16dp"
                     />
                 <EditText
-                    android:id="@+id/earn3"
+                    android:id="@+id/restaurantsEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"/>
+                    android:hint="@string/earn_rate"
+                    android:layout_margin="16dp"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-                <Spinner
-                    android:id="@+id/type4"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/airlines"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Airlines:"
+                    android:layout_margin="16dp"
                     />
                 <EditText
-                    android:id="@+id/earn4"
+                    android:id="@+id/airlinesEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"/>
+                    android:hint="@string/earn_rate"
+                    android:layout_margin="16dp"
+                    />
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/layout5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone">
-                <Spinner
-                    android:id="@+id/type5"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/travel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Travel:"
+                    android:layout_margin="16dp"
                     />
                 <EditText
-                    android:id="@+id/earn5"
+                    android:id="@+id/travelEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"/>
+                    android:hint="@string/earn_rate"
+                    android:layout_margin="16dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/gas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gas:"
+                    android:layout_margin="16dp"
+                    />
+                <EditText
+                    android:id="@+id/gasEarn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/earn_rate"
+                    android:layout_margin="16dp"
+                    />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
