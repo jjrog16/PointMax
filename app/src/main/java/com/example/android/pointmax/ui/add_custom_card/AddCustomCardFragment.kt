@@ -68,7 +68,7 @@ class AddCustomCardFragment : Fragment() {
             
             viewModel.allCards.observe(viewLifecycleOwner, Observer {
                 if (it != null) {
-                    isCardInList = it.contains(Card(cardToBeEntered))
+                    isCardInList = it.contains(Card(cardToBeEntered.toUpperCase()))
                     when {
                         // Case when nothing is in EditText
                         TextUtils.isEmpty(editCardNameView.text) or
@@ -84,7 +84,7 @@ class AddCustomCardFragment : Fragment() {
                             // Edit the card only if the card entered is not the same
                             if (!isCardInList) {
                                 cardToBeEntered.let {
-                                    viewModel.edit(oldName = cardToChange, newName = cardToBeEntered)
+                                    viewModel.edit(oldName = cardToChange, newName = cardToBeEntered.toUpperCase())
                                 }
                                 // Go back to wallet after finishing the edit
                                 val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
@@ -104,11 +104,11 @@ class AddCustomCardFragment : Fragment() {
                             // Adding a new card into the Wallet
                             if(!isCardInList) {
                                 // Insert a new card
-                                cardToBeEntered.let {
-                                    val card = Card(it)
+                                cardToBeEntered.let {cardNameToEnter ->
+                                    val card = Card(cardNameToEnter.toUpperCase())
                                     viewModel.insert(card)
                                 }
-                            } else if (isCardInList) {
+                            } else {
                                 Toast.makeText(
                                     context,
                                     getString(R.string.card_already_exists),

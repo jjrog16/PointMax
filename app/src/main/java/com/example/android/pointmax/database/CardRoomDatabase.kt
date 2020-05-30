@@ -60,13 +60,13 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 cardDao.deleteAll()
 
                 // Add sample cards.
-                var card = Card(cardName = "Petal Credit Card")
+                var card = Card(cardName = "Petal Credit Card".toUpperCase())
                 cardDao.insert(card)
                 
-                card = Card(cardName = "Generic Card")
+                card = Card(cardName = "Generic Card".toUpperCase())
                 cardDao.insert(card)
                 
-                card = Card(cardName = "American Express Gold")
+                card = Card(cardName = "American Express Gold".toUpperCase())
                 cardDao.insert(card)
                 
             }
