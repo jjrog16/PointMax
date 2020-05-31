@@ -83,9 +83,21 @@ class AddCustomCardFragment : Fragment() {
                             // Edit the card only if the card entered is not the same
                             if (!isCardInList(cardList,cardToBeEntered)) {
                                 cardToBeEntered.let {
-                                    viewModel.edit(
-                                        oldName = cardToChange,
-                                        newName = cardToBeEntered.toUpperCase()
+//                                    viewModel.edit(
+//                                        oldName = cardToChange,
+//                                        newName = cardToBeEntered.toUpperCase()
+//                                    )
+                                    viewModel.deleteByName(cardToChange)
+                                    viewModel.insert(
+                                        Card(
+                                            cardToBeEntered,
+                                            general = generalEarn.text.toString().toDouble(),
+                                            airlines = airlinesEarn.text.toString().toDouble(),
+                                            restaurant = restaurantsEarn.text.toString().toDouble(),
+                                            groceries = groceriesEarn.text.toString().toDouble(),
+                                            travel = travelEarn.text.toString().toDouble(),
+                                            gas = gasEarn.text.toString().toDouble()
+                                        )
                                     )
                                 }
                                 // Go back to wallet after finishing the edit

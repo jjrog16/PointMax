@@ -52,4 +52,11 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
         repository.editName(newName, oldName)
     }
     
+    /**
+     * Launching a new coroutine to delete the data in a non-blocking way
+     */
+    fun deleteByName(cardName: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteByName(cardName)
+    }
+    
 }
