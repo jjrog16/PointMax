@@ -159,6 +159,7 @@ class AddCustomCardFragment : Fragment() {
         return isValuePassed
     }
     
+    // Set the category earn rates to the appropriate card
     private fun setCategoryViews(cardList: List<Card>, cardToBeEntered: String) {
         for (card in cardList) {
             if (card.cardName == cardToBeEntered) {
@@ -172,6 +173,7 @@ class AddCustomCardFragment : Fragment() {
         }
     }
     
+    // Check to see if a card is in the List
     private fun isCardInList(cardList: List<Card>, cardToBeEntered: String): Boolean {
         var cardContained = false
         for (card in cardList) {
