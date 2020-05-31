@@ -68,9 +68,6 @@ class AddCustomCardFragment : Fragment() {
                 
                 add_card_done.setOnClickListener {
                     cardToBeEntered = editCardNameView.text.toString().trim().toUpperCase()
-                    //isCardInList = cardList.contains(Card(cardToBeEntered))
-                    Timber.i("[Done Clicked] Card to enter: $cardToBeEntered")
-                    Timber.i("[Done Clicked] Is Petal card in list: ${cardList.contains(Card("PETAL CREDIT CARD"))}")
                     when {
                         // Case when nothing is in EditText
                         TextUtils.isEmpty(editCardNameView.text) or
@@ -84,7 +81,7 @@ class AddCustomCardFragment : Fragment() {
                         // Sets the text of the EditText view only if coming from another card
                         isComingFromAnotherCard -> {
                             // Edit the card only if the card entered is not the same
-                            if (!setCategoryViews(cardList,cardToBeEntered)) {
+                            if (!isCardInList(cardList,cardToBeEntered)) {
                                 cardToBeEntered.let {
                                     viewModel.edit(
                                         oldName = cardToChange,
@@ -108,7 +105,7 @@ class AddCustomCardFragment : Fragment() {
                         }
                         else -> {
                             // Adding a new card into the Wallet
-                            if (!setCategoryViews(cardList,cardToBeEntered)) {
+                            if (!isCardInList(cardList,cardToBeEntered)) {
                                 // Insert a new card
                                 cardToBeEntered.let { cardNameToEnter ->
                                     val card = Card(cardNameToEnter.toUpperCase())
@@ -162,8 +159,7 @@ class AddCustomCardFragment : Fragment() {
         return isValuePassed
     }
     
-    private fun setCategoryViews(cardList: List<Card>, cardToBeEntered: String):Boolean {
-        var cardContained = false
+    private fun setCategoryViews(cardList: List<Card>, cardToBeEntered: String) {
         for (card in cardList) {
             if (card.cardName == cardToBeEntered) {
                 generalEarn.setText(card.general.toString())
@@ -172,6 +168,14 @@ class AddCustomCardFragment : Fragment() {
                 travelEarn.setText(card.travel.toString())
                 groceriesEarn.setText(card.groceries.toString())
                 gasEarn.setText(card.gas.toString())
+            }
+        }
+    }
+    
+    private fun isCardInList(cardList: List<Card>, cardToBeEntered: String): Boolean {
+        var cardContained = false
+        for (card in cardList) {
+            if (card.cardName == cardToBeEntered) {
                 cardContained = true
             }
         }
