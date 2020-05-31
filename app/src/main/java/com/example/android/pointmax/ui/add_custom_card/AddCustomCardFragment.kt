@@ -48,7 +48,6 @@ class AddCustomCardFragment : Fragment() {
         // Card value passed in through Fragment as a string
         val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
         
-        
         // Set the text of the EditText view only if coming from another card
         val isComingFromAnotherCard = setDefaultEditText(cardToChange)
         
@@ -62,12 +61,31 @@ class AddCustomCardFragment : Fragment() {
         
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cardList ->
             if (cardList != null) {
-                Timber.i("${cardList[0]}")
                 var cardToBeEntered = editCardNameView.text.toString().trim().toUpperCase()
                 setCategoryViews(cardList, cardToBeEntered)
+                val valuesBeforeDonePressed = arrayOf(
+                    generalEarn.text.toString().toDouble(),
+                    airlinesEarn.text.toString().toDouble(),
+                    restaurantsEarn.text.toString().toDouble(),
+                    groceriesEarn.text.toString().toDouble(),
+                    travelEarn.text.toString().toDouble(),
+                    gasEarn.text.toString().toDouble()
+                )
                 
                 add_card_done.setOnClickListener {
                     cardToBeEntered = editCardNameView.text.toString().trim().toUpperCase()
+                    val valuesAfterDonePressed = arrayOf(
+                        generalEarn.text.toString().toDouble(),
+                        airlinesEarn.text.toString().toDouble(),
+                        restaurantsEarn.text.toString().toDouble(),
+                        groceriesEarn.text.toString().toDouble(),
+                        travelEarn.text.toString().toDouble(),
+                        gasEarn.text.toString().toDouble()
+                    )
+                    
+                    // Check to see if user changed any value in the EditText after pressing done
+                    fun isBeforeAndAfterValueEqual(): Boolean = valuesBeforeDonePressed.contentEquals(valuesAfterDonePressed)
+                    
                     when {
                         // Case when nothing is in EditText
                         TextUtils.isEmpty(editCardNameView.text) or
@@ -80,13 +98,10 @@ class AddCustomCardFragment : Fragment() {
                         }
                         // Sets the text of the EditText view only if coming from another card
                         isComingFromAnotherCard -> {
-                            // Edit the card only if the card entered is not the same
-                            if (!isCardInList(cardList,cardToBeEntered)) {
+                            // Save the edited card only if the card entered is
+                            // not the same as a card already in the database
+                            if (!isCardInList(cardList,cardToBeEntered) || (isCardInList(cardList,cardToBeEntered) && !isBeforeAndAfterValueEqual())) {
                                 cardToBeEntered.let {
-//                                    viewModel.edit(
-//                                        oldName = cardToChange,
-//                                        newName = cardToBeEntered.toUpperCase()
-//                                    )
                                     viewModel.deleteByName(cardToChange)
                                     viewModel.insert(
                                         Card(
@@ -119,8 +134,16 @@ class AddCustomCardFragment : Fragment() {
                             // Adding a new card into the Wallet
                             if (!isCardInList(cardList,cardToBeEntered)) {
                                 // Insert a new card
-                                cardToBeEntered.let { cardNameToEnter ->
-                                    val card = Card(cardNameToEnter.toUpperCase())
+                                cardToBeEntered.let {
+                                    val card = Card(
+                                        cardToBeEntered,
+                                        general = generalEarn.text.toString().toDouble(),
+                                        airlines = airlinesEarn.text.toString().toDouble(),
+                                        restaurant = restaurantsEarn.text.toString().toDouble(),
+                                        groceries = groceriesEarn.text.toString().toDouble(),
+                                        travel = travelEarn.text.toString().toDouble(),
+                                        gas = gasEarn.text.toString().toDouble()
+                                    )
                                     viewModel.insert(card)
     
                                     // Once value is added into the database, go back to the wallet

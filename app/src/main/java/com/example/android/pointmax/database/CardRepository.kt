@@ -18,8 +18,4 @@ class CardRepository(private val cardDao: CardDao) {
     suspend fun deleteByName(name: String){
         cardDao.deleteByName(name)
     }
-    
-    suspend fun editName(newName: String, oldName: String){
-        cardDao.editName(newName, oldName)
-    }
 }

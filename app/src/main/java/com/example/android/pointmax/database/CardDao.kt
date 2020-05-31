@@ -18,8 +18,4 @@ interface CardDao {
     
     @Query("DELETE FROM Card WHERE cardName = :name")
     suspend fun deleteByName(name: String)
-    
-    @Query("UPDATE Card SET cardName = :newName WHERE cardName = :oldName")
-    suspend fun editName(newName: String, oldName: String)
-    
 }

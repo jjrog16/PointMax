@@ -42,13 +42,14 @@
                     android:id="@+id/general"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="General:"
+                    android:text="@string/general"
                     android:layout_margin="16dp"/>
                 <EditText
                     android:id="@+id/generalEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
                     />
             </LinearLayout>
@@ -69,6 +70,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
                     />
             </LinearLayout>
@@ -89,6 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
                     />
             </LinearLayout>
@@ -109,6 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
                     />
             </LinearLayout>
@@ -129,6 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
                     />
             </LinearLayout>
@@ -149,19 +154,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
                     />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-        <Button
-            android:id="@+id/add_next_category"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Add"
-            app:layout_constraintTop_toBottomOf="@id/host_linear_layout"
-            app:layout_constraintStart_toStartOf="@id/host_linear_layout"
-            app:layout_constraintEnd_toEndOf="@id/host_linear_layout" />
         <Button
             android:id="@+id/add_card_done"
             android:layout_width="wrap_content"

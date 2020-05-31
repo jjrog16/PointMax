@@ -21,17 +21,17 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
     // Observed LiveData will notify the observer when the data has changed.
     val allCards: LiveData<List<Card>>
     
-    // Because we need only the name of the card passed as a variable, it is of type String
-    private val _cardToEdit = MutableLiveData<String>()
-    
-    // The external LiveData for the cardToEdit
-    val cardToEdit: String
-        get() = _cardToEdit.toString()
+//    // Because we need only the name of the card passed as a variable, it is of type String
+//    private val _cardToEdit = MutableLiveData<String>()
+//
+//    // The external LiveData for the cardToEdit
+//    val cardToEdit: String
+//        get() = _cardToEdit.toString()
     
     init {
-        if (cardName != null) {
-            _cardToEdit.value = cardName
-        }
+//        if (cardName != null) {
+//            _cardToEdit.value = cardName
+//        }
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
         allCards = repository.allCards
@@ -42,14 +42,6 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
      */
     fun insert(card: Card) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(card)
-    }
-    
-    
-    /**
-     * Launching a new coroutine to update the data in a non-blocking way
-     */
-    fun edit(newName: String, oldName: String) = viewModelScope.launch(Dispatchers.IO) {
-        repository.editName(newName, oldName)
     }
     
     /**

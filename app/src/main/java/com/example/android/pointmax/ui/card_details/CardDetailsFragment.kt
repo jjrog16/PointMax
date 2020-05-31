@@ -2,14 +2,10 @@ package com.example.android.pointmax.ui.card_details
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.android.pointmax.R
 
 import com.example.android.pointmax.databinding.FragmentCardDetailsBinding
 import kotlinx.android.synthetic.main.fragment_card_details.*

@@ -13,4 +13,6 @@
     <string name="add_a_card">Add a Card</string>
     <string name="card_already_exists">Card already exists</string>
     <string name="earn_rate">Earn Rate</string>
+    <string name="general">General:</string>
+    <string name="default_earn_rate">1.0</string>
 </resources>
