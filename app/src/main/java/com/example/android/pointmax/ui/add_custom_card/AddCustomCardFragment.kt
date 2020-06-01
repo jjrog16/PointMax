@@ -194,15 +194,27 @@ class AddCustomCardFragment : Fragment() {
     
     // Creates a card based off the values entered on the view
     private fun createCard(cardToBeEntered: String) : Card {
-        return Card(
-            cardToBeEntered,
-            general = generalEarn.text.toString().toDouble(),
-            airlines = airlinesEarn.text.toString().toDouble(),
-            restaurant = restaurantsEarn.text.toString().toDouble(),
-            groceries = groceriesEarn.text.toString().toDouble(),
-            travel = travelEarn.text.toString().toDouble(),
-            gas = gasEarn.text.toString().toDouble()
-        )
+        return if(generalEarn.text.toString().toDouble() > 1.0) {
+            Card(
+                cardToBeEntered,
+                general = generalEarn.text.toString().toDouble(),
+                airlines = generalEarn.text.toString().toDouble(),
+                restaurant = generalEarn.text.toString().toDouble(),
+                groceries = generalEarn.text.toString().toDouble(),
+                travel = generalEarn.text.toString().toDouble(),
+                gas = generalEarn.text.toString().toDouble()
+            )
+        } else {
+             Card(
+                cardToBeEntered,
+                general = generalEarn.text.toString().toDouble(),
+                airlines = airlinesEarn.text.toString().toDouble(),
+                restaurant = restaurantsEarn.text.toString().toDouble(),
+                groceries = groceriesEarn.text.toString().toDouble(),
+                travel = travelEarn.text.toString().toDouble(),
+                gas = gasEarn.text.toString().toDouble()
+            )
+        }
     }
 }
 
