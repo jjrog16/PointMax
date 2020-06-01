@@ -123,11 +123,10 @@ class AddCustomCardFragment : Fragment() {
                                 // Hides keyboard after finishing input
                                 context?.let { it1 -> hideKeyboard(it1, editCardNameView) }
                             } else {
-                                Toast.makeText(
-                                    context,
-                                    getString(R.string.card_already_exists),
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                // Go back to wallet after finishing the edit
+                                val action =
+                                    AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
+                                findNavController().navigate(action)
                             }
                         }
                         else -> {
@@ -164,11 +163,6 @@ class AddCustomCardFragment : Fragment() {
                         }
                     }
                     
-                }
-    
-                // Add category option so user can add categories to card
-                add_next_category.setOnClickListener {
-                    Toast.makeText(context, "Add button pressed", Toast.LENGTH_SHORT).show()
                 }
             }
         })
