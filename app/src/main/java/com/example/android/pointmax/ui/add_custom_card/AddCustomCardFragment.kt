@@ -44,7 +44,6 @@ class AddCustomCardFragment : Fragment() {
         // EditText field
         editCardNameView = new_card_name
         
-        
         // Card value passed in through Fragment as a string
         val cardToChange = AddCustomCardFragmentArgs.fromBundle(requireArguments()).cardToEdit
         
@@ -103,7 +102,7 @@ class AddCustomCardFragment : Fragment() {
                             if (!isCardInList(cardList,cardToBeEntered) || (isCardInList(cardList,cardToBeEntered) && !isBeforeAndAfterValueEqual())) {
                                 cardToBeEntered.let {
                                     viewModel.deleteByName(cardToChange)
-                                    viewModel.insert(createCard(cardToBeEntered))
+                                    viewModel.insert(createCard(it))
                                 }
                                 // Go back to wallet after finishing the edit
                                 val action =
@@ -124,7 +123,7 @@ class AddCustomCardFragment : Fragment() {
                             if (!isCardInList(cardList,cardToBeEntered)) {
                                 // Insert a new card
                                 cardToBeEntered.let {
-                                    viewModel.insert(createCard(cardToBeEntered))
+                                    viewModel.insert(createCard(it))
     
                                     // Once value is added into the database, go back to the wallet
                                     val action =
@@ -182,6 +181,7 @@ class AddCustomCardFragment : Fragment() {
     }
     
     // Check to see if a card is in the List
+    // (because God knows why "it.contains" doesn't feel like working)
     private fun isCardInList(cardList: List<Card>, cardToBeEntered: String): Boolean {
         var cardContained = false
         for (card in cardList) {
