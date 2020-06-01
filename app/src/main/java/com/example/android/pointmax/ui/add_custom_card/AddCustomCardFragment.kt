@@ -103,17 +103,7 @@ class AddCustomCardFragment : Fragment() {
                             if (!isCardInList(cardList,cardToBeEntered) || (isCardInList(cardList,cardToBeEntered) && !isBeforeAndAfterValueEqual())) {
                                 cardToBeEntered.let {
                                     viewModel.deleteByName(cardToChange)
-                                    viewModel.insert(
-                                        Card(
-                                            cardToBeEntered,
-                                            general = generalEarn.text.toString().toDouble(),
-                                            airlines = airlinesEarn.text.toString().toDouble(),
-                                            restaurant = restaurantsEarn.text.toString().toDouble(),
-                                            groceries = groceriesEarn.text.toString().toDouble(),
-                                            travel = travelEarn.text.toString().toDouble(),
-                                            gas = gasEarn.text.toString().toDouble()
-                                        )
-                                    )
+                                    viewModel.insert(createCard(cardToBeEntered))
                                 }
                                 // Go back to wallet after finishing the edit
                                 val action =
@@ -123,7 +113,7 @@ class AddCustomCardFragment : Fragment() {
                                 // Hides keyboard after finishing input
                                 context?.let { it1 -> hideKeyboard(it1, editCardNameView) }
                             } else {
-                                // Go back to wallet after finishing the edit
+                                // Go back to wallet if no changes made
                                 val action =
                                     AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
                                 findNavController().navigate(action)
@@ -134,16 +124,7 @@ class AddCustomCardFragment : Fragment() {
                             if (!isCardInList(cardList,cardToBeEntered)) {
                                 // Insert a new card
                                 cardToBeEntered.let {
-                                    val card = Card(
-                                        cardToBeEntered,
-                                        general = generalEarn.text.toString().toDouble(),
-                                        airlines = airlinesEarn.text.toString().toDouble(),
-                                        restaurant = restaurantsEarn.text.toString().toDouble(),
-                                        groceries = groceriesEarn.text.toString().toDouble(),
-                                        travel = travelEarn.text.toString().toDouble(),
-                                        gas = gasEarn.text.toString().toDouble()
-                                    )
-                                    viewModel.insert(card)
+                                    viewModel.insert(createCard(cardToBeEntered))
     
                                     // Once value is added into the database, go back to the wallet
                                     val action =
@@ -157,12 +138,10 @@ class AddCustomCardFragment : Fragment() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
-        
                             // Hides keyboard after finishing input
                             context?.let { it1 -> hideKeyboard(it1, editCardNameView) }
                         }
                     }
-                    
                 }
             }
         })
@@ -211,6 +190,19 @@ class AddCustomCardFragment : Fragment() {
             }
         }
         return cardContained
+    }
+    
+    // Creates a card based off the values entered on the view
+    private fun createCard(cardToBeEntered: String) : Card {
+        return Card(
+            cardToBeEntered,
+            general = generalEarn.text.toString().toDouble(),
+            airlines = airlinesEarn.text.toString().toDouble(),
+            restaurant = restaurantsEarn.text.toString().toDouble(),
+            groceries = groceriesEarn.text.toString().toDouble(),
+            travel = travelEarn.text.toString().toDouble(),
+            gas = gasEarn.text.toString().toDouble()
+        )
     }
 }
 
