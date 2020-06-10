@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class AddCustomCardViewModel(cardName: String? = null, application: Application) : AndroidViewModel(application) {
+class AddCustomCardViewModel(cardName: String?, application: Application) : AndroidViewModel(application) {
     private val repository: CardRepository
     // Using LiveData and caching what getAlphabetizedWords returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the
@@ -21,17 +21,7 @@ class AddCustomCardViewModel(cardName: String? = null, application: Application)
     // Observed LiveData will notify the observer when the data has changed.
     val allCards: LiveData<List<Card>>
     
-//    // Because we need only the name of the card passed as a variable, it is of type String
-//    private val _cardToEdit = MutableLiveData<String>()
-//
-//    // The external LiveData for the cardToEdit
-//    val cardToEdit: String
-//        get() = _cardToEdit.toString()
-    
     init {
-//        if (cardName != null) {
-//            _cardToEdit.value = cardName
-//        }
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
         allCards = repository.allCards

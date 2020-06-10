@@ -8,13 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItem
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.android.pointmax.ui.wallet.WalletFragmentDirections
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.recyclerview_item.view.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -78,11 +76,8 @@ class MainActivity : AppCompatActivity() {
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item) {
-            is ActionMenuItem -> {
-                findNavController(R.id.nav_host_fragment).navigateUp()
-            }
+            is ActionMenuItem -> findNavController(R.id.nav_host_fragment).navigateUp()
         }
-        Timber.i("$item pressed")
         return super.onOptionsItemSelected(item)
     }
 }

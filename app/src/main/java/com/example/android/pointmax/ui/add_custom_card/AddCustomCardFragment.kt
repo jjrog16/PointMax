@@ -193,9 +193,7 @@ class AddCustomCardFragment : Fragment() {
     // (because God knows why "it.contains" doesn't feel like working)
     private fun isCardInList(cardList: List<Card>, cardToBeEntered: String): Boolean {
         var cardContained = false
-        for (card in cardList) {
-            if (card.cardName == cardToBeEntered) cardContained = true
-        }
+        for (card in cardList) if (card.cardName == cardToBeEntered) cardContained = true
         return cardContained
     }
     
