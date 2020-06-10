@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
+    android:label='" "'
     app:startDestination="@id/navigation_home">
 
     <fragment
@@ -15,59 +16,39 @@
         android:id="@+id/navigation_wallet"
         android:name="com.example.android.pointmax.ui.wallet.WalletFragment"
         android:label="@string/title_wallet"
-        tools:layout="@layout/fragment_wallet" >
-        <action
-            android:id="@+id/action_navigation_wallet_to_cardDetailsFragment"
-            app:destination="@id/cardDetailsFragment" />
+        tools:layout="@layout/fragment_wallet">
         <action
             android:id="@+id/action_navigation_wallet_to_addCardFragment"
             app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_navigation_wallet_to_addCustomCardFragment"
+            app:destination="@id/addCustomCardFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_recommended"
         android:name="com.example.android.pointmax.ui.recommended.RecommendedFragment"
         android:label="@string/title_recommended"
-        tools:layout="@layout/fragment_recommended"/>
+        tools:layout="@layout/fragment_recommended" />
     <fragment
         android:id="@+id/addCustomCardFragment"
         android:name="com.example.android.pointmax.ui.add_custom_card.AddCustomCardFragment"
-        android:label="@string/add_a_card"
-        tools:layout="@layout/fragment_add_custom_card" >
+        android:label=''
+        tools:layout="@layout/fragment_add_custom_card">
         <argument
             android:name="cardToEdit"
-            app:argType="string"/>
+            app:argType="string" />
         <action
             android:id="@+id/action_addCustomCardFragment_to_navigation_wallet"
             app:destination="@id/navigation_wallet"
             app:popUpTo="@id/navigation_wallet"
             app:popUpToInclusive="false" />
-        <action
-            android:id="@+id/action_addCustomCardFragment_to_cardDetailsFragment"
-            app:destination="@id/cardDetailsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/cardDetailsFragment"
-        android:name="com.example.android.pointmax.ui.card_details.CardDetailsFragment"
-        android:label=" "
-        tools:layout="@layout/fragment_card_details" >
-        <argument
-            android:name="selectedCard"
-            app:argType="string"
-            />
-        <action
-            android:id="@+id/action_cardDetailsFragment_to_navigation_wallet"
-            app:destination="@id/navigation_wallet"
-            app:popUpTo="@id/navigation_wallet" />
-        <action
-            android:id="@+id/action_cardDetailsFragment_to_addCustomCardFragment"
-            app:destination="@id/addCustomCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCardFragment"
         android:name="com.example.android.pointmax.ui.add_new_card.AddCardFragment"
-        android:label="@string/add_a_card"
-        tools:layout="@layout/fragment_add_card" >
+        android:label=" "
+        tools:layout="@layout/fragment_add_card">
         <action
             android:id="@+id/action_addCardFragment_to_addCustomCardFragment"
             app:destination="@id/addCustomCardFragment" />

@@ -6,168 +6,195 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.add_custom_card.AddCustomCardFragment">
 
-    <EditText
-        android:id="@+id/new_card_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/enter_card_name"
-        android:autofillHints="@string/enter_card_name"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:inputType="textPersonName" />
-
     <ScrollView
         android:id="@+id/host_linear_layout"
-        android:layout_width="408dp"
-        android:layout_height="299dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/add_card_done"
-        app:layout_constraintTop_toBottomOf="@id/new_card_name"
-        android:layout_margin="16dp">
+        app:layout_constraintStart_toStartOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/new_card_name"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/enter_card_name"
+                    android:ems="10"
+                    android:hint="@string/enter_card_name"
+                    android:inputType="textPersonName"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.111"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/add_card_done"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/add_card_done"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintStart_toEndOf="@+id/new_card_name"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.442" />
+            </LinearLayout>
+
+
             <LinearLayout
                 android:id="@+id/layout1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:visibility="visible">
+
                 <TextView
                     android:id="@+id/general"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/general"
-                    android:layout_margin="16dp"/>
+                    android:layout_margin="16dp"
+                    android:text="@string/general" />
+
                 <EditText
                     android:id="@+id/generalEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
-                    />
+                    android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/groceries"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Groceries:"
                     android:layout_margin="16dp"
-                    />
+                    android:text="Groceries:" />
+
                 <EditText
                     android:id="@+id/groceriesEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
-                    />
+                    android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/restaurants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Restaurants:"
                     android:layout_margin="16dp"
-                    />
+                    android:text="Restaurants:" />
+
                 <EditText
                     android:id="@+id/restaurantsEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
-                    />
+                    android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/airlines"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Airlines:"
                     android:layout_margin="16dp"
-                    />
+                    android:text="Airlines:" />
+
                 <EditText
                     android:id="@+id/airlinesEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
-                    />
+                    android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/travel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Travel:"
                     android:layout_margin="16dp"
-                    />
+                    android:text="Travel:" />
+
                 <EditText
                     android:id="@+id/travelEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
-                    />
+                    android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/layout6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/gas"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gas:"
                     android:layout_margin="16dp"
-                    />
+                    android:text="Gas:" />
+
                 <EditText
                     android:id="@+id/gasEarn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="@string/earn_rate"
-                    android:text="@string/default_earn_rate"
                     android:layout_margin="16dp"
-                    />
+                    android:hint="@string/earn_rate"
+                    android:text="@string/default_earn_rate" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_gravity="center"/>
         </LinearLayout>
     </ScrollView>
-        <Button
-            android:id="@+id/add_card_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/host_linear_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/add_card_done" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

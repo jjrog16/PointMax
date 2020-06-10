@@ -142,6 +142,15 @@ class AddCustomCardFragment : Fragment() {
                         }
                     }
                 }
+                
+                delete_button.setOnClickListener {
+                    cardToBeEntered.let {
+                        viewModel.deleteByName(it)
+                        
+                        val action = AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
+                        findNavController().navigate(action)
+                    }
+                }
             }
         })
     }
@@ -185,9 +194,7 @@ class AddCustomCardFragment : Fragment() {
     private fun isCardInList(cardList: List<Card>, cardToBeEntered: String): Boolean {
         var cardContained = false
         for (card in cardList) {
-            if (card.cardName == cardToBeEntered) {
-                cardContained = true
-            }
+            if (card.cardName == cardToBeEntered) cardContained = true
         }
         return cardContained
     }
@@ -195,6 +202,7 @@ class AddCustomCardFragment : Fragment() {
     // Creates a card based off the values entered on the view
     private fun createCard(cardToBeEntered: String) : Card {
         return if(generalEarn.text.toString().toDouble() > 1.0) {
+            // Assign all categories to the general value
             Card(
                 cardToBeEntered,
                 general = generalEarn.text.toString().toDouble(),
@@ -205,6 +213,7 @@ class AddCustomCardFragment : Fragment() {
                 gas = generalEarn.text.toString().toDouble()
             )
         } else {
+            // Assign the values as the user submits
              Card(
                 cardToBeEntered,
                 general = generalEarn.text.toString().toDouble(),

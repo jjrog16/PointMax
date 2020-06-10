@@ -68,10 +68,6 @@ class MainActivity : AppCompatActivity() {
                     navView.visibility = View.GONE
                     walletFAB.visibility = View.GONE
                 }
-                R.id.cardDetailsFragment -> {
-                    navView.visibility = View.GONE
-                    walletFAB.visibility = View.GONE
-                }
                 R.id.addCardFragment -> {
                     navView.visibility = View.GONE
                     walletFAB.visibility = View.GONE
