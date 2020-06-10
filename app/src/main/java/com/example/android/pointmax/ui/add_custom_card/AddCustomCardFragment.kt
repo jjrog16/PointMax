@@ -112,7 +112,7 @@ class AddCustomCardFragment : Fragment() {
                                 // Hides keyboard after finishing input
                                 context?.let { it1 -> hideKeyboard(it1, editCardNameView) }
                             } else {
-                                // Go back to wallet if no changes made
+                                // Go back to wallet if no changes made 
                                 val action =
                                     AddCustomCardFragmentDirections.actionAddCustomCardFragmentToNavigationWallet()
                                 findNavController().navigate(action)

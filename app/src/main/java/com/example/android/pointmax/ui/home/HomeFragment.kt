@@ -16,9 +16,15 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentHomeBinding = FragmentHomeBinding.inflate(layoutInflater)
-        binding.setLifecycleOwner(this)
+        binding.lifecycleOwner = this
         binding.viewModel = ViewModelProvider(
             this).get(HomeViewModel::class.java)
         return binding.root
+    }
+    
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        
+        
     }
 }
