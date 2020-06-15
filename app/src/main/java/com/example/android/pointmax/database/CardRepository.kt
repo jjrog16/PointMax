@@ -18,4 +18,9 @@ class CardRepository(private val cardDao: CardDao) {
     suspend fun deleteByName(name: String){
         cardDao.deleteByName(name)
     }
+    
+//    fun getAllBestCards(categoryChosen: String): LiveData<List<Card>> {
+//        return cardDao.getAllBestCards(categoryChosen)
+//    }
+    
 }

@@ -10,6 +10,9 @@ interface CardDao {
     @Query("SELECT * from Card")
     fun getCards(): LiveData<List<Card>>
     
+//    @Query("SELECT * FROM Card ORDER BY :categoryChosen DESC")
+//    fun getAllBestCards(categoryChosen: String?): LiveData<List<Card>>
+    
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(card: Card)
 

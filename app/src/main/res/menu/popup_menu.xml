@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+    <item android:id="@+id/generalCategory"
+        android:title="General" />
+    <item android:id="@+id/groceriesCategory"
+        android:title="Groceries" />
+    <item android:id="@+id/restaurantsCategory"
+        android:title="Restaurants" />
+    <item android:id="@+id/gasCategory"
+        android:title="Gas" />
+    <item android:id="@+id/airlinesCategory"
+        android:title="Airlines" />
+    <item android:id="@+id/travelCategory"
+        android:title="Travel" />
+</menu>

@@ -2,11 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="viewModel"
-            type="com.example.android.pointmax.ui.home.HomeViewModel" />
-    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,21 +16,22 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/best_card"
+            app:layout_constraintBottom_toTopOf="@id/top_card"
             android:gravity="center" />
 
         <TextView
-            android:id="@+id/best_card"
+            android:id="@+id/top_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:textSize="20sp"
-            android:text="@{viewModel.text}"
+            android:text=""
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/best_card" />
+            app:layout_constraintTop_toBottomOf="@id/top_card" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

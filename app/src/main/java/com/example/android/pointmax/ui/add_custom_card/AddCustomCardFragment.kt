@@ -181,7 +181,7 @@ class AddCustomCardFragment : Fragment() {
             if (card.cardName == cardToBeEntered) {
                 generalEarn.setText(card.general.toString())
                 airlinesEarn.setText(card.airlines.toString())
-                restaurantsEarn.setText(card.restaurant.toString())
+                restaurantsEarn.setText(card.restaurants.toString())
                 travelEarn.setText(card.travel.toString())
                 groceriesEarn.setText(card.groceries.toString())
                 gasEarn.setText(card.gas.toString())
@@ -205,7 +205,7 @@ class AddCustomCardFragment : Fragment() {
                 cardToBeEntered,
                 general = generalEarn.text.toString().toDouble(),
                 airlines = generalEarn.text.toString().toDouble(),
-                restaurant = generalEarn.text.toString().toDouble(),
+                restaurants = generalEarn.text.toString().toDouble(),
                 groceries = generalEarn.text.toString().toDouble(),
                 travel = generalEarn.text.toString().toDouble(),
                 gas = generalEarn.text.toString().toDouble()
@@ -216,7 +216,7 @@ class AddCustomCardFragment : Fragment() {
                 cardToBeEntered,
                 general = generalEarn.text.toString().toDouble(),
                 airlines = airlinesEarn.text.toString().toDouble(),
-                restaurant = restaurantsEarn.text.toString().toDouble(),
+                restaurants = restaurantsEarn.text.toString().toDouble(),
                 groceries = groceriesEarn.text.toString().toDouble(),
                 travel = travelEarn.text.toString().toDouble(),
                 gas = gasEarn.text.toString().toDouble()

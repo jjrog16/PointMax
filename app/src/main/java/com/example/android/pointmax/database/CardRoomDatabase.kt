@@ -66,7 +66,7 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 card = Card(cardName = "Generic Card".toUpperCase())
                 cardDao.insert(card)
                 
-                card = Card(cardName = "American Express Gold".toUpperCase(), airlines = 3.0, restaurant = 4.0, groceries = 4.0)
+                card = Card(cardName = "American Express Gold".toUpperCase(), airlines = 3.0, restaurants = 4.0, groceries = 4.0)
                 cardDao.insert(card)
                 
             }
