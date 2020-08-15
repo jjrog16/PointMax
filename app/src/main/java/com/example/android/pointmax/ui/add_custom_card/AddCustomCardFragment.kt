@@ -191,7 +191,9 @@ class AddCustomCardFragment : Fragment() {
     
     // Check to see if a card is in the List
     private fun isCardInList(cardList: List<Card>, cardToBeEntered: String): Boolean {
-        for (card in cardList) if (card.cardName == cardToBeEntered) return true
+        cardList.forEach{
+            if(it.cardName == cardToBeEntered) return true
+        }
         return false
     }
     
