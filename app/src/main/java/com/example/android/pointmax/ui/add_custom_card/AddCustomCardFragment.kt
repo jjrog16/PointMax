@@ -191,14 +191,14 @@ class AddCustomCardFragment : Fragment() {
     
     // Check to see if a card is in the List
     private fun isCardInList(cardList: List<Card>, cardToBeEntered: String): Boolean {
-        var cardContained = false
-        for (card in cardList) if (card.cardName == cardToBeEntered) cardContained = true
-        return cardContained
+        for (card in cardList) if (card.cardName == cardToBeEntered) return true
+        return false
     }
     
     // Creates a card based off the values entered on the view
     private fun createCard(cardToBeEntered: String) : Card {
         return if(generalEarn.text.toString().toDouble() > 1.0) {
+            Timber.i("Card to be entered is = $cardToBeEntered")
             // Assign all categories to the general value
             Card(
                 cardToBeEntered,
