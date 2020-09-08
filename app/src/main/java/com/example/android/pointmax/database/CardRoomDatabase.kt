@@ -50,7 +50,7 @@ public abstract class CardRoomDatabase : RoomDatabase() {
                 super.onOpen(db)
                 INSTANCE?.let { database ->
                     scope.launch {
-                        populateDatabase(database.cardDao())
+                        //populateDatabase(database.cardDao())
                     }
                 }
             }
