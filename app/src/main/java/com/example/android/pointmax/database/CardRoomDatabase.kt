@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 
 
 // Annotates class to be a Room Database with a table (entity) of the Card class
-@Database(entities = arrayOf(Card::class), version = 1, exportSchema = false)
+@Database(entities = [Card::class], version = 1, exportSchema = false)
 public abstract class CardRoomDatabase : RoomDatabase() {
 
     abstract fun cardDao(): CardDao
