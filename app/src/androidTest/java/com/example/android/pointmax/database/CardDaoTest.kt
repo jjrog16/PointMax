@@ -3,7 +3,10 @@ package com.example.android.pointmax.database
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import kotlinx.coroutines.test.runBlockingTest
+import org.junit.After
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
@@ -26,5 +29,16 @@ class CardDaoTest {
         
         dao = database.cardDao()
     }
-
+    
+    /**
+     * Close the database after each test
+     */
+    @After
+    fun teardown(){
+        database.close()
+    }
+    
+    
+    @Test
+    fun insert() = runBlockingTest {  }
 }
