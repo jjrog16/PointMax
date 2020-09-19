@@ -38,7 +38,14 @@ class CardDaoTest {
         database.close()
     }
     
+    /**
+     * Naming scheme as follows: subjectUnderTest_actionOrInput_resultState()
+     */
+    
     
     @Test
-    fun insert() = runBlockingTest {  }
+    fun insert_insertACard_returnsCardInserted() = runBlockingTest {
+        val testCard = Card("Amex Platinum", airlines = 5.0)
+        dao.insert(testCard)
+    }
 }
