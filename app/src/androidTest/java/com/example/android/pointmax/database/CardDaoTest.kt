@@ -13,7 +13,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
@@ -53,7 +52,7 @@ class CardDaoTest {
     
     
     @Test
-    fun insert_insertACard_returnsCardInserted() = runBlockingTest {
+    fun insert_insertACard_returnsIfCardExists() = runBlockingTest {
         val testCard = Card("Amex Platinum", airlines = 5.0)
         dao.insert(testCard)
         
