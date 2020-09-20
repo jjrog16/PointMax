@@ -6,16 +6,16 @@ apply plugin: "androidx.navigation.safeargs"
 
 
 android {
-    compileSdkVersion 29
-    dataBinding {
-        enabled = true
+    compileSdkVersion 30
+    buildFeatures {
+        dataBinding true
     }
 
 
     defaultConfig {
         applicationId "com.example.android.pointmax"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -39,6 +39,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
     }
 
 }

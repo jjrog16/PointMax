@@ -1,18 +1,27 @@
 package com.example.android.pointmax.database
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.example.android.getOrAwaitValue
+import com.google.common.truth.Truth.assertThat
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
 class CardDaoTest {
 
+    @get:Rule
+    var instantTaskExecutorRule = InstantTaskExecutorRule()
+    
     private lateinit var database: CardRoomDatabase
     private lateinit var dao: CardDao
     
@@ -47,5 +56,12 @@ class CardDaoTest {
     fun insert_insertACard_returnsCardInserted() = runBlockingTest {
         val testCard = Card("Amex Platinum", airlines = 5.0)
         dao.insert(testCard)
+        
+        // getOrAwaitValue is located in the LiveDataUtilAndroidTest file provided by Google
+        // and allows for the observation of LiveData in testing where you cannot use asynchronous
+        // code to run in threads
+        val observeAllCards = dao.getCards().getOrAwaitValue()
+        
+        assertThat(observeAllCards).contains(testCard)
     }
 }
