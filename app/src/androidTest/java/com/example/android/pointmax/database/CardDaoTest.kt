@@ -50,6 +50,12 @@ class CardDaoTest {
      * Naming scheme as follows: subjectUnderTest_actionOrInput_resultState()
      */
     
+    /**
+     * Insert tests...
+     * ...inserting one card value and having the value appear
+     * ...inserting two cards with the same name and having only one card appear and it
+     *    being the second
+     */
     
     @Test
     fun insert_insertACard_returnsIfCardExists() = runBlockingTest {
@@ -63,4 +69,66 @@ class CardDaoTest {
         
         assertThat(observeAllCards).contains(testCard)
     }
+    
+    @Test
+    fun insert_insertDuplicateNamesWithUniqueValues_returnsOnlyLastCardInserted() = runBlockingTest {
+        val cardsToInsert = arrayOf(
+            Card("Card 1"),
+            Card("Card 2"),
+            Card("Card 2", restaurants = 2.0),
+            Card("Card 3")
+        )
+    
+        // Insert each card into the database
+        cardsToInsert.forEach {
+            dao.insert(it)
+        }
+        
+        val observeAllCards = dao.getCards().getOrAwaitValue()
+        
+        assertThat(observeAllCards).doesNotContain(Card("Card 2"))
+    }
+    
+    @Test
+    fun deleteAll_deleteAllInsertedCards_returnsIfEmpty() = runBlockingTest {
+        val cardsToInsert = arrayOf(
+            Card("Card 1"),
+            Card("Card 2"),
+            Card("Card 3")
+        )
+        
+        // Insert each card into the database
+        cardsToInsert.forEach {
+            dao.insert(it)
+        }
+        
+        // Clear all cards in the database
+        dao.deleteAll()
+        
+        // Observe the database
+        val observeAllCards = dao.getCards().getOrAwaitValue()
+        
+        assertThat(observeAllCards).isEmpty()
+    }
+    
+    @Test
+    fun deleteByName_deleteSelectedCard_returnsIfCardIsInDatabase() = runBlockingTest{
+        val cardsToInsert = arrayOf(
+            Card("Card 1"),
+            Card("Card 2"),
+            Card("Card 3")
+        )
+    
+        // Insert each card into the database
+        cardsToInsert.forEach {
+            dao.insert(it)
+        }
+        
+        dao.deleteByName("Card 2")
+        
+        val observeAllCards = dao.getCards().getOrAwaitValue()
+        
+        assertThat(observeAllCards).doesNotContain(Card("Card 2"))
+    }
+    
 }
