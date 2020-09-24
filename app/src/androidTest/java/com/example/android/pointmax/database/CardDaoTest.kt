@@ -74,9 +74,7 @@ class CardDaoTest {
     fun insert_insertDuplicateNamesWithUniqueValues_returnsOnlyLastCardInserted() = runBlockingTest {
         val cardsToInsert = arrayOf(
             Card("Card 1"),
-            Card("Card 2"),
-            Card("Card 2", restaurants = 2.0),
-            Card("Card 3")
+            Card("Card 1", restaurants = 2.0),
         )
     
         // Insert each card into the database
@@ -86,7 +84,7 @@ class CardDaoTest {
         
         val observeAllCards = dao.getCards().getOrAwaitValue()
         
-        assertThat(observeAllCards).doesNotContain(Card("Card 2"))
+        assertThat(observeAllCards).doesNotContain(Card("Card 1"))
     }
     
     @Test
