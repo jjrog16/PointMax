@@ -18,26 +18,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     // Observed LiveData will notify the observer when the data has changed.
     val allCards: LiveData<List<Card>>
     
-//    var mutableBestCard: MutableLiveData<String> = MutableLiveData()
-    
-    
     init {
         val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
         repository = CardRepository(cardsDao)
         allCards = repository.allCards
     }
     
-//    fun getBestCardByCategory(category: String) : LiveData<List<Card>> {
-//        return repository.getAllBestCards(category)
-//    }
-    
-    
-//    val categoryObservable : LiveData<List<Card>> = Transformations.switchMap(mutableBestCard) { param ->
-//        repository.getAllBestCards(param)
-//    }
-
-
-//    fun orderByCategory(param: String){
-//        mutableBestCard.value = param
-//    }
 }
