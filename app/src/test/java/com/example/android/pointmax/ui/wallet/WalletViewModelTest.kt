@@ -17,8 +17,12 @@ class WalletViewModelTest{
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
     
+    /**
+     * Naming scheme as follows: subjectUnderTest_actionOrInput_resultState()
+     */
+    
     @Test
-    fun displayCardDetails_setNavigateToSelectedCard(){
+    fun displayCardDetails_cardSelected_cardIsSameAsTestCard(){
         // Test card
         val testCard = Card("Test Card")
         
@@ -28,11 +32,10 @@ class WalletViewModelTest{
         // When selecting a card
         walletViewModel.displayCardDetails(testCard)
         
-        // Then the setNavigationToSelectedCard is triggered
+        // Then the setNavigationToSelectedCard is triggered to navigate to the card given
         val value = walletViewModel.navigateToSelectedCard.getOrAwaitValue()
         
         assertThat(value).isEqualTo(testCard)
-        
     }
     
 }

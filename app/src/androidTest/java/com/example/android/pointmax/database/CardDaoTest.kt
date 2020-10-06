@@ -110,7 +110,7 @@ class CardDaoTest {
     }
     
     @Test
-    fun deleteByName_deleteSelectedCard_returnsIfCardIsInDatabase() = runBlockingTest{
+    fun deleteByName_deleteSelectedCard_returnsCardIsNotInDatabase() = runBlockingTest{
         val cardsToInsert = arrayOf(
             Card("Card 1"),
             Card("Card 2"),
