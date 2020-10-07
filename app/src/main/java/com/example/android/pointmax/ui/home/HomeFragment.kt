@@ -25,7 +25,7 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val application = requireNotNull(activity).application
+        //val application = requireNotNull(activity).application
         
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         
@@ -42,8 +42,10 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         var result = false
         if (item != null) {
-            Toast.makeText(context, "Selected Item: " + item.title, Toast.LENGTH_SHORT).show()
             viewModel.allCards.observe(viewLifecycleOwner, Observer {cardList ->
+                if(cardList.isEmpty()) {
+                    Toast.makeText(context, "No cards in wallet", Toast.LENGTH_SHORT).show()
+                }
                 when (item.itemId) {
                     R.id.generalCategory -> {
                         val bestCardList = mutableMapOf<String, Double>()

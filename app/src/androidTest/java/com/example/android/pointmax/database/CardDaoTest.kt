@@ -49,14 +49,7 @@ class CardDaoTest {
     /**
      * Naming scheme as follows: subjectUnderTest_actionOrInput_resultState()
      */
-    
-    /**
-     * Insert tests...
-     * ...inserting one card value and having the value appear
-     * ...inserting two cards with the same name and having only one card appear and it
-     *    being the second
-     */
-    
+     
     @Test
     fun insert_insertACard_returnsIfCardExists() = runBlockingTest {
         val testCard = Card("Amex Platinum", airlines = 5.0)
