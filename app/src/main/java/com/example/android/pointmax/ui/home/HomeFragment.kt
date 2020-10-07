@@ -43,13 +43,18 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
         var result = false
         if (item != null) {
             viewModel.allCards.observe(viewLifecycleOwner, Observer {cardList ->
+                val bestCardList = mutableMapOf<String, Double>()
                 if(cardList.isEmpty()) {
                     Toast.makeText(context, "No cards in wallet", Toast.LENGTH_SHORT).show()
+                    return@Observer
+                } else {
+                    bestCardList.clear()
                 }
                 when (item.itemId) {
                     R.id.generalCategory -> {
-                        val bestCardList = mutableMapOf<String, Double>()
-                        for(card in cardList){ bestCardList[card.cardName] = card.general }
+                        cardList.forEach {
+                            bestCardList[it.cardName] = it.general
+                        }
                         if (bestCardList.isNotEmpty()) {
                             val sorted = bestCardList.entries.sortedBy { it.value }
                             top_card.text = sorted.last().key
@@ -57,8 +62,9 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
                         result = true
                     }
                     R.id.groceriesCategory -> {
-                        val bestCardList = mutableMapOf<String, Double>()
-                        for(card in cardList){ bestCardList[card.cardName] = card.groceries }
+                        cardList.forEach {
+                            bestCardList[it.cardName] = it.groceries
+                        }
                         if (bestCardList.isNotEmpty()) {
                             val sorted = bestCardList.entries.sortedBy { it.value }
                             top_card.text = sorted.last().key
@@ -66,8 +72,9 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
                         result = true
                     }
                     R.id.restaurantsCategory -> {
-                        val bestCardList = mutableMapOf<String, Double>()
-                        for(card in cardList){ bestCardList[card.cardName] = card.restaurants }
+                        cardList.forEach {
+                            bestCardList[it.cardName] = it.restaurants
+                        }
                         if (bestCardList.isNotEmpty()) {
                             val sorted = bestCardList.entries.sortedBy { it.value }
                             top_card.text = sorted.last().key
@@ -75,8 +82,9 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
                         result = true
                     }
                     R.id.gasCategory -> {
-                        val bestCardList = mutableMapOf<String, Double>()
-                        for(card in cardList){ bestCardList[card.cardName] = card.gas }
+                        cardList.forEach {
+                            bestCardList[it.cardName] = it.gas
+                        }
                         if (bestCardList.isNotEmpty()) {
                             val sorted = bestCardList.entries.sortedBy { it.value }
                             top_card.text = sorted.last().key
@@ -84,8 +92,9 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
                         result = true
                     }
                     R.id.airlinesCategory -> {
-                        val bestCardList = mutableMapOf<String, Double>()
-                        for(card in cardList){ bestCardList[card.cardName] = card.airlines }
+                        cardList.forEach {
+                            bestCardList[it.cardName] = it.airlines
+                        }
                         if (bestCardList.isNotEmpty()) {
                             val sorted = bestCardList.entries.sortedBy { it.value }
                             top_card.text = sorted.last().key
@@ -93,8 +102,9 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
                         result = true
                     }
                     R.id.travelCategory -> {
-                        val bestCardList = mutableMapOf<String, Double>()
-                        for(card in cardList){ bestCardList[card.cardName] = card.travel }
+                        cardList.forEach {
+                            bestCardList[it.cardName] = it.travel
+                        }
                         if (bestCardList.isNotEmpty()) {
                             val sorted = bestCardList.entries.sortedBy { it.value }
                             top_card.text = sorted.last().key
