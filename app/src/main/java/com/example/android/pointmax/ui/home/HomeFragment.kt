@@ -25,7 +25,6 @@ class HomeFragment : Fragment(), PopupMenu.OnMenuItemClickListener  {
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //val application = requireNotNull(activity).application
         
         viewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         
