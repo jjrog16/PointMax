@@ -1,10 +1,11 @@
-package com.example.android.pointmax.database
+package com.example.android.pointmax.data.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.android.getOrAwaitValue
+import com.example.android.pointmax.data.database.entities.Card
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest

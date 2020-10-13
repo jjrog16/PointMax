@@ -2,9 +2,9 @@ package com.example.android.pointmax.ui.home
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.android.pointmax.database.Card
-import com.example.android.pointmax.database.CardRepository
-import com.example.android.pointmax.database.CardRoomDatabase
+import com.example.android.pointmax.data.database.entities.Card
+import com.example.android.pointmax.data.repositories.CardRepository
+import com.example.android.pointmax.data.database.CardRoomDatabase
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
     

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="cardRecyclerViewItem"
-            type="com.example.android.pointmax.database.Card" />
+            type="com.example.android.pointmax.data.database.entities.Card" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

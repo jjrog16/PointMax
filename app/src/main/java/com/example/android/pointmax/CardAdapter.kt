@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.pointmax.database.Card
+import com.example.android.pointmax.data.database.entities.Card
 import com.example.android.pointmax.databinding.RecyclerviewItemBinding
 
 
@@ -65,6 +65,6 @@ class CardAdapter(val onClickListener: OnClickListener) :
      * @param clickListener lambda that will be called with the current [Card]
      */
     class OnClickListener(val clickListener: (cards : Card) -> Unit) {
-        fun onClick(cards:Card) = clickListener(cards)
+        fun onClick(cards: Card) = clickListener(cards)
     }
 }

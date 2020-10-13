@@ -3,7 +3,7 @@ package com.example.android.pointmax.ui.wallet
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.android.pointmax.database.Card
+import com.example.android.pointmax.data.database.entities.Card
 import com.getOrAwaitValue
 import com.google.common.truth.Truth.assertThat
 

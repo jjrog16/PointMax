@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.android.pointmax.R
-import com.example.android.pointmax.database.Card
+import com.example.android.pointmax.data.database.entities.Card
 import kotlinx.android.synthetic.main.fragment_add_custom_card.*
 import timber.log.Timber
 

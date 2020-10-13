@@ -1,20 +1,15 @@
 package com.example.android.pointmax.ui.add_custom_card
 
-import android.os.Bundle
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.android.getOrAwaitValue
-import com.example.android.pointmax.database.CardDao
-import com.example.android.pointmax.database.CardRoomDatabase
-import com.google.common.truth.Truth.assertThat
+import com.example.android.pointmax.data.database.CardDao
+import com.example.android.pointmax.data.database.CardRoomDatabase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import org.junit.runner.RunWith
 
 @ExperimentalCoroutinesApi

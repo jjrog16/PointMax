@@ -3,9 +3,10 @@ package com.example.android.pointmax.ui.add_custom_card
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.android.pointmax.database.*
+import com.example.android.pointmax.data.database.*
+import com.example.android.pointmax.data.database.entities.Card
+import com.example.android.pointmax.data.repositories.CardRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

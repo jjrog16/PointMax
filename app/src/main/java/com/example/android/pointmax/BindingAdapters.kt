@@ -2,7 +2,7 @@ package com.example.android.pointmax
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.pointmax.database.Card
+import com.example.android.pointmax.data.database.entities.Card
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.android.pointmax.database
+package com.example.android.pointmax.data.database.entities
 
 import androidx.room.*
 
