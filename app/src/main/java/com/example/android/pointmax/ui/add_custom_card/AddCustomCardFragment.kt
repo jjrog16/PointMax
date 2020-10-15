@@ -51,11 +51,11 @@ class AddCustomCardFragment : Fragment() {
         
         // The ViewModelFactory that takes the card name string and creates a ViewModel
         // with the card name string
-        val viewModelFactory = AddCustomCardViewModelFactory(cardToChange, application)
+        //val viewModelFactory = AddCustomCardViewModelFactory(cardToChange, application)
         
         // Create ViewModel with ViewModelFactory
         viewModel =
-            ViewModelProvider(this, viewModelFactory).get(AddCustomCardViewModel::class.java)
+            ViewModelProvider(this).get(AddCustomCardViewModel::class.java)
         
         viewModel.allCards.observe(viewLifecycleOwner, Observer { cardList ->
             if (cardList != null) {

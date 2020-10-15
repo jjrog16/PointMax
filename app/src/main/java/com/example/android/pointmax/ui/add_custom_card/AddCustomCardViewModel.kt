@@ -11,8 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class AddCustomCardViewModel(cardName: String?, application: Application) : AndroidViewModel(application) {
-    private val repository: CardRepository
+class AddCustomCardViewModel(private val repository: CardRepository, application: Application) : AndroidViewModel(application) {
+    
     // Using LiveData and caching what getAlphabetizedWords returns has several benefits:
     // - We can put an observer on the data (instead of polling for changes) and only update the
     //   the UI when the data actually changes.
@@ -20,13 +20,13 @@ class AddCustomCardViewModel(cardName: String?, application: Application) : Andr
     
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    val allCards: LiveData<List<Card>>
+    val allCards: LiveData<List<Card>> = repository.allCards
     
-    init {
-        val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
-        repository = CardRepository(cardsDao)
-        allCards = repository.allCards
-    }
+//    init {
+//        val cardsDao = CardRoomDatabase.getDatabase(application, viewModelScope).cardDao()
+//        repository = CardRepository(cardsDao)
+//        allCards = repository.allCards
+//    }
     
     /**
      * Launching a new coroutine to insert the data in a non-blocking way
